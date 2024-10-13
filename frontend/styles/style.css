@@ -158,3 +158,24 @@ footer {
     padding: 20px;
     background-color: #222;
 }
+.suggestions {
+    position: absolute;
+    background-color: #1c1c1c;
+    width: 250px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #555;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: none; /* Oculta por padrão */
+}
+
+.suggestions div {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+
+.suggestions div:hover {
+    background-color: #333;
+}

@@ -74,21 +74,51 @@ document.getElementById('search-btn').addEventListener('click', function () {
     fetch(`/games?name=${encodeURIComponent(searchTerm)}`)
         .then(response => response.json())
         .then(data => {
-            if (data.length > 0) {
-                allGames = data; // Atualiza a lista de jogos encontrados
-                currentPage = 0; // Reinicia a página
-                displayGames(); // Exibe os jogos encontrados
-            } else {
-                alert('Jogo não encontrado.');
-            }
+            allGames = data; // Atualiza a lista de jogos com os resultados da pesquisa
+            currentPage = 0; // Reseta a página para os resultados da pesquisa
+            displayGames(); // Exibe os resultados da pesquisa
         })
         .catch(error => {
-            console.error('Erro na busca:', error);
+            console.error('Erro ao buscar jogos:', error);
         });
 });
 
-// Adiciona evento para o botão "Ver Mais"
+// Exibir sugestões enquanto digita no campo de busca
+document.getElementById('search-input').addEventListener('input', function () {
+    const searchTerm = this.value.toLowerCase();
+    const suggestions = document.getElementById('search-suggestions');
+    suggestions.innerHTML = ''; // Limpa as sugestões anteriores
+
+    if (searchTerm.length > 0) {
+        // Filtra os jogos que contêm o termo de busca
+        const filteredGames = allGames.filter(game => game.title.toLowerCase().includes(searchTerm));
+
+        // Adiciona sugestões à div
+        filteredGames.forEach(game => {
+            const suggestion = document.createElement('div');
+            suggestion.textContent = game.title;
+            suggestion.onclick = () => {
+                updateHighlight(game.title, game.info, game.price, game.image, game.summary, game.trailerUrl);
+                document.getElementById('search-input').value = game.title; // Preenche o campo de pesquisa
+                suggestions.innerHTML = ''; // Limpa as sugestões
+                suggestions.style.display = 'none'; // Oculta as sugestões
+            };
+            suggestions.appendChild(suggestion);
+        });
+
+        // Exibe a div de sugestões se houver sugestões
+        if (filteredGames.length > 0) {
+            suggestions.style.display = 'block';
+        } else {
+            suggestions.style.display = 'none';
+        }
+    } else {
+        suggestions.style.display = 'none'; // Oculta as sugestões se o campo de busca estiver vazio
+    }
+});
+
+// Evento para carregar mais jogos ao clicar no botão
 document.getElementById('view-more').addEventListener('click', loadMoreGames);
 
-// Inicializa a página carregando todos os jogos
+// Chama a função para carregar jogos ao iniciar a página
 loadGames();
