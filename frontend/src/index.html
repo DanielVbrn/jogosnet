@@ -3,21 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Game Store</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/stylecompra.css">
 </head>
 <body>
-    <nav>
-        <h1>
-            JogosNET
-        </h1>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>GAMER CIRCLE</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <input type="text" id="search-input" placeholder="Buscar jogo...">
+                        <button id="search-btn" class="btn">Buscar</button>
+                        <div id="search-suggestions" class="suggestions"></div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    </nav>
-    <session >
-        
-    </session>
-    <aside></aside>
+    <section class="hero">
+        <div class="hero-content">
+            <img id="highlight-img" src="imagens/thewitcher3.jpeg" alt="The Witcher 3" class="highlight-img">
+            <h2 id="highlight-title">The Witcher 3: Wild Hunt</h2>
+            <p id="highlight-info">RPG | 19 May 2015 | CD Projekt Red</p>
+            <p id="highlight-price" class="price">$29.99</p>
+            <a href="compra.html" class="btn buy">Buy Now</a>  
+            <button class="btn details" id="view-details">View Details</button>
+        </div>
+    </section>
+
+    <section id="game-summary" class="game-summary" style="display: none;">
+        <h3>Resumo do game</h3>
+        <p id="summary-text">The Witcher 3: Wild Hunt é um RPG de mundo aberto ambientado em um universo de fantasia visualmente deslumbrante.</p>
+
+        <div id="trailer-container" style="display: none;">
+            <iframe id="trailer-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="game-grid">
+        <!-- Os jogos serão preenchidos dinamicamente aqui -->
+    </section>
+
+    <div class="view-more-container">
+        <button id="view-more" class="btn">Ver Mais</button>
+    </div>
+
     <footer>
-
+        <p>&copy; 2024 Gamer Circle. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Adicione aqui o arquivo gerado pelo Webpack -->
+    <script src="../dist/app.js"></script>
+    <script>
+        // Exibe os jogos na grid ao carregar a página
+        document.addEventListener('DOMContentLoaded', async () => {
+            const productUI = new ProductUI();
+            await productUI.displayGames(); // Chama a função para exibir os jogos
+        });
+
+        // Função para atualizar o destaque do jogo
+        function updateHighlight(title, info, price, imgSrc, description, trailer) {
+            document.getElementById('highlight-title').innerText = title;
+            document.getElementById('highlight-info').innerText = info;
+            document.getElementById('highlight-price').innerText = price;
+            document.getElementById('highlight-img').src = imgSrc;
+
+            const summaryText = document.getElementById('summary-text');
+            summaryText.innerText = description;
+
+            const trailerContainer = document.getElementById('trailer-container');
+            trailerContainer.style.display = 'block';
+            const trailerVideo = document.getElementById('trailer-video');
+            trailerVideo.src = trailer;
+
+            document.getElementById('game-summary').style.display = 'block'; // Exibe o resumo do jogo
+        }
+    </script>
 </body>
 </html>
