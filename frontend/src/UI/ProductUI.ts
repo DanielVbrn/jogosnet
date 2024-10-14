@@ -16,9 +16,11 @@ export default class ProductUI {
 
     async initializeApp(): Promise<void> {
         await this.loadProducts(); // Carrega produtos ao iniciar a aplicação
+        this.updateHeroWithFirstProduct(); // Atualiza a hero com o primeiro produto
         this.attachEventListeners();
         this.displayGames(); // Exibe os jogos após o carregamento
-    }
+    }    
+    
 
     private attachEventListeners(): void {
         const searchBtn = document.getElementById('search-btn');
@@ -37,29 +39,30 @@ export default class ProductUI {
         try {
             const productsData = await this.productService.getAllProducts();
             this.allGames = productsData.map((data: any) => 
-                new Product(data.id, data.nome, data.descricao, data.preco, data.genero, data.img)
+                new Product(data.id, data.nome, data.descricao, data.preco, data.genero, data.imgSrc) // Alterado para imgSrc
             ); // Mapeia os dados para instâncias de Product
         } catch (error) {
             console.error('Erro ao carregar os produtos:', error);
         }
     }
+    
 
     async displayGames() {
         try {
             const productsToDisplay = this.searchTerm
                 ? await this.productService.getProductByName(this.searchTerm) // Chama o método de busca
                 : this.allGames.slice(this.currentPage * this.gamesPerPage, (this.currentPage + 1) * this.gamesPerPage); // Exibe a página atual
-
+    
             // Verifique se o resultado é um array
             const products = Array.isArray(productsToDisplay) ? productsToDisplay : [productsToDisplay];
-
+    
             const gameGrid = document.querySelector('.game-grid');
             if (gameGrid) gameGrid.innerHTML = ''; // Limpa o conteúdo existente, se necessário
-
+    
             products.forEach((product: Product) => {
                 const gameCard = `
-                    <div class="game card" onclick="updateHighlight('${product.nome}', '${product.genero}', '${product.preco}', '${product.img}', '${product.descricao}', '')">
-                        <img src="${product.img}" alt="${product.nome}">
+                    <div class="game card" onclick="updateHighlight('${product.nome}', '${product.genero}', '${product.preco}', '${product.imgSrc}', '${product.descricao}', '')">
+                        <img src="${product.imgSrc}" alt="${product.nome}">
                         <h3>${product.nome}</h3>
                         <p>$${product.preco} | ${product.genero}</p>
                     </div>
@@ -70,6 +73,7 @@ export default class ProductUI {
             console.error('Erro ao carregar os jogos:', error);
         }
     }
+    
 
     private async searchGames(): Promise<void> {
         this.searchTerm = (document.getElementById('search-input') as HTMLInputElement).value; // Atualiza searchTerm
@@ -106,4 +110,30 @@ export default class ProductUI {
 
         document.getElementById("game-summary")!.style.display = 'block'; // Exibe o resumo do jogo
     }
+
+
+    private updateHeroWithFirstProduct(): void {
+        // Verifica se há produtos disponíveis
+        if (this.allGames.length > 0) {
+            const firstGame = this.allGames[0]; // Obtém o primeiro produto da lista
+    
+            // Atualiza os elementos da seção Hero com as informações do primeiro produto
+            document.getElementById("highlight-title")!.textContent = firstGame.nome;
+            document.getElementById("highlight-info")!.textContent = `${firstGame.genero} | ${firstGame.descricao}`;
+            document.getElementById("highlight-price")!.textContent = `$${firstGame.preco.toFixed(2)}`; // Formata o preço com duas casas decimais
+            (document.getElementById("highlight-img") as HTMLImageElement).src = firstGame.imgSrc; // Atualiza a imagem
+    
+            // Atualiza o resumo do jogo
+            document.getElementById("summary-text")!.textContent = firstGame.descricao;
+    
+            // Verifica se o produto possui um trailer e atualiza o vídeo
+            const trailerContainer = document.getElementById("trailer-container")!;
+            const trailerVideo = document.getElementById("trailer-video") as HTMLVideoElement;
+    
+            // Caso o trailer exista
+            
+            document.getElementById("game-summary")!.style.display = 'block'; // Exibe o resumo do jogo
+        }
+    }
+    
 }

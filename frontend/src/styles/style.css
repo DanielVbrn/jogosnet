@@ -23,7 +23,8 @@ header {
     align-items: center;
 }
 
-.logo h1 {
+.logo h1 a{
+    text-decoration: none;
     color: orange;
 }
 

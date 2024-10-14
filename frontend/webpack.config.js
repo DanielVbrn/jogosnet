@@ -1,22 +1,47 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/app.ts', // Mude isso para o caminho do seu arquivo de entrada
-    output: {
-        filename: 'bundle.js', // Nome do arquivo de saída
-        path: path.resolve(__dirname, 'dist'), // Pasta de saída
-    },
-    resolve: {
-        extensions: ['.ts', '.js'], // Extensões que o Webpack deve resolver
-    },
+    mode: 'development',
+    entry: './src/app.ts', // Altere para o caminho do seu arquivo de entrada
     module: {
         rules: [
             {
-                test: /\.ts$/, // Para arquivos .ts
-                use: 'ts-loader', // Usar o ts-loader para compilar TypeScript
-                exclude: /node_modules/,
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             },
-        ],
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'], // Adicione essas linhas
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            }
+            
+        ]
     },
-    mode: 'production', // Mude para 'development' se estiver desenvolvendo
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true // Limpa a pasta dist antes de gerar novos arquivos
+    },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'), // Pasta onde o arquivo index.html está
+        },
+        compress: true,
+        port: 8080, // A porta em que o servidor será executado
+        historyApiFallback: true, // Isso pode ajudar com o roteamento em SPA
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html", // Altere para o caminho do seu index.html
+            filename: 'index.html',
+        }),
+    ],
 };

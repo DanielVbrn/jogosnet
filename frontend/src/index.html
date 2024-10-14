@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Store</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/stylecompra.css">
+
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo">
-                <h1>GAMER CIRCLE</h1>
+                <h1>
+                    <a href="./">GAMER CIRCLE</a>
+                </h1>
             </div>
             <nav>
                 <ul>
@@ -27,7 +28,6 @@
 
     <section class="hero">
         <div class="hero-content">
-            <img id="highlight-img" src="imagens/thewitcher3.jpeg" alt="The Witcher 3" class="highlight-img">
             <h2 id="highlight-title">The Witcher 3: Wild Hunt</h2>
             <p id="highlight-info">RPG | 19 May 2015 | CD Projekt Red</p>
             <p id="highlight-price" class="price">$29.99</p>
@@ -58,31 +58,7 @@
     </footer>
 
     <!-- Adicione aqui o arquivo gerado pelo Webpack -->
-    <script src="../dist/app.js"></script>
-    <script>
-        // Exibe os jogos na grid ao carregar a página
-        document.addEventListener('DOMContentLoaded', async () => {
-            const productUI = new ProductUI();
-            await productUI.displayGames(); // Chama a função para exibir os jogos
-        });
-
-        // Função para atualizar o destaque do jogo
-        function updateHighlight(title, info, price, imgSrc, description, trailer) {
-            document.getElementById('highlight-title').innerText = title;
-            document.getElementById('highlight-info').innerText = info;
-            document.getElementById('highlight-price').innerText = price;
-            document.getElementById('highlight-img').src = imgSrc;
-
-            const summaryText = document.getElementById('summary-text');
-            summaryText.innerText = description;
-
-            const trailerContainer = document.getElementById('trailer-container');
-            trailerContainer.style.display = 'block';
-            const trailerVideo = document.getElementById('trailer-video');
-            trailerVideo.src = trailer;
-
-            document.getElementById('game-summary').style.display = 'block'; // Exibe o resumo do jogo
-        }
-    </script>
+    <script src="../dist/bundle.js"></script>
+    
 </body>
 </html>

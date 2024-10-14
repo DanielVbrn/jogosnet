@@ -4,15 +4,15 @@ class Product {
   descricao: string;
   preco: number;
   genero: string; // Adicionando a propriedade de gênero
-  img: string;    // Adicionando a propriedade de imagem
+  imgSrc: string;    // Adicionando a propriedade de imagem
 
-  constructor(id: number, nome: string, descricao: string, preco: number, genero: string, img: string) {
+  constructor(id: number, nome: string, descricao: string, preco:number, genero: string, imgSrc: string) {
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
     this.genero = genero;
-    this.img = img;
+    this.imgSrc = imgSrc;
   }
 
   public getNome(): string {
@@ -32,7 +32,7 @@ class Product {
   }
 
   public getImg(): string {
-    return this.img;
+    return this.imgSrc;
   }
 
   public infoProduct(): string {
@@ -40,7 +40,7 @@ class Product {
       Nome: ${this.nome} \n
       Descricao: ${this.descricao} \n
       Preço: ${this.preco} \n
-      Imagem: ${this.img} \n
+      Imagem: ${this.imgSrc} \n
     `;
   }
 
@@ -57,7 +57,7 @@ class Product {
         // Cria o HTML para cada jogo dinamicamente
         const gameCard = `
           <div class="game card" onclick="updateHighlight('${game.nome}', '${game.descricao}', '${game.preco}')">
-            <img src="${game.img}" alt="${game.title}">
+            <img src="${game.imgSrc}" alt="${game.title}">
             <h3>${game.nome}</h3>
             <p>$${game.preco} | ${game.descricao}</p>
           </div>
