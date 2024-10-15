@@ -27,6 +27,7 @@ const corsOptions = {
 app.use(express())
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
+app.use('/uploads', express.static('uploads'));
 
 app.use(routes)
 

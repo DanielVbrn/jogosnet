@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Store</title>
-
 </head>
 <body>
     <header>
@@ -57,8 +56,12 @@
         <p>&copy; 2024 Gamer Circle. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Adicione aqui o arquivo gerado pelo Webpack -->
     <script src="../dist/bundle.js"></script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const productUI = new ProductUI();
+            await productUI.initializeApp(); // Inicializa a aplicação
+        });
+    </script>
 </body>
 </html>

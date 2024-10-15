@@ -3,15 +3,13 @@ class Product {
   nome: string;
   descricao: string;
   preco: number;
-  genero: string; // Adicionando a propriedade de gênero
   imgSrc: string;    // Adicionando a propriedade de imagem
 
-  constructor(id: number, nome: string, descricao: string, preco:number, genero: string, imgSrc: string) {
+  constructor(id: number, nome: string, descricao: string, preco:number, imgSrc: string) {
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
-    this.genero = genero;
     this.imgSrc = imgSrc;
   }
 
@@ -26,11 +24,11 @@ class Product {
   public getPreco(): number {
     return this.preco;
   }
-
+/*
   public getGenero(): string {
     return this.genero;
   }
-
+*/
   public getImg(): string {
     return this.imgSrc;
   }

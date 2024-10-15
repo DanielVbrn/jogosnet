@@ -38,13 +38,17 @@ export default class ProductUI {
     private async loadProducts(): Promise<void> {
         try {
             const productsData = await this.productService.getAllProducts();
+            const baseUrl = 'http://localhost:8080/'; // URL base
+    
             this.allGames = productsData.map((data: any) => 
-                new Product(data.id, data.nome, data.descricao, data.preco, data.genero, data.imgSrc) // Alterado para imgSrc
-            ); // Mapeia os dados para instâncias de Product
+                new Product(data.id, data.nome, data.descricao, data.preco, baseUrl + data.imgSrc)
+            );
         } catch (error) {
             console.error('Erro ao carregar os produtos:', error);
         }
     }
+    
+    
     
 
     async displayGames() {
@@ -61,10 +65,10 @@ export default class ProductUI {
     
             products.forEach((product: Product) => {
                 const gameCard = `
-                    <div class="game card" onclick="updateHighlight('${product.nome}', '${product.genero}', '${product.preco}', '${product.imgSrc}', '${product.descricao}', '')">
+                    <div class="game card" onclick="updateHighlight('${product.nome}', '${product.preco}', '${product.imgSrc}', '${product.descricao}', '')">
                         <img src="${product.imgSrc}" alt="${product.nome}">
                         <h3>${product.nome}</h3>
-                        <p>$${product.preco} | ${product.genero}</p>
+                        <p>$${product.preco} | </p>
                     </div>
                 `;
                 if (gameGrid) gameGrid.innerHTML += gameCard; // Adiciona o jogo à grid
@@ -95,7 +99,7 @@ export default class ProductUI {
         document.getElementById("highlight-title")!.textContent = title;
         document.getElementById("highlight-info")!.textContent = info;
         document.getElementById("highlight-price")!.textContent = price;
-        (document.getElementById("highlight-img") as HTMLImageElement).src = imgSrc; // Certifique-se de fazer o cast para HTMLImageElement
+        (document.getElementById("highlight-img") as HTMLImageElement).src = `http://localhost:8080/${imgSrc}`; // Adicione a URL base
         document.getElementById("summary-text")!.textContent = summary;
 
         const trailerContainer = document.getElementById("trailer-container")!;
@@ -119,18 +123,12 @@ export default class ProductUI {
     
             // Atualiza os elementos da seção Hero com as informações do primeiro produto
             document.getElementById("highlight-title")!.textContent = firstGame.nome;
-            document.getElementById("highlight-info")!.textContent = `${firstGame.genero} | ${firstGame.descricao}`;
+            document.getElementById("highlight-info")!.textContent = ` ${firstGame.descricao}`;
             document.getElementById("highlight-price")!.textContent = `$${firstGame.preco.toFixed(2)}`; // Formata o preço com duas casas decimais
             (document.getElementById("highlight-img") as HTMLImageElement).src = firstGame.imgSrc; // Atualiza a imagem
     
             // Atualiza o resumo do jogo
             document.getElementById("summary-text")!.textContent = firstGame.descricao;
-    
-            // Verifica se o produto possui um trailer e atualiza o vídeo
-            const trailerContainer = document.getElementById("trailer-container")!;
-            const trailerVideo = document.getElementById("trailer-video") as HTMLVideoElement;
-    
-            // Caso o trailer exista
             
             document.getElementById("game-summary")!.style.display = 'block'; // Exibe o resumo do jogo
         }

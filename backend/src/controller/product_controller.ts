@@ -24,17 +24,42 @@ export default class ProductController {
         return res.json(products).status(200);
     }
 
-    static saveProduct = async (req:Request, res: Response) => {
+    static saveProduct = async (req: Request, res: Response) => {
         const productsRepository = AppDataSource.getRepository(Products);
         
         const product = new Products();
-        product.nome = req.body.nome
-        product.descricao = req.body.descricao
-        product.preco = req.body.preco
-        const savedProduct = await productsRepository.save(product);
-        
-        return res.json(savedProduct).status(200);
-    }
+        product.nome = req.body.nome;
+        product.descricao = req.body.descricao;
+    
+        // Garantindo que o preço seja um número
+        if (typeof req.body.preco === 'number') {
+            product.preco = parseFloat(req.body.preco); 
+        } else {
+            return res.status(400).json({ message: "Preço deve ser um número." });
+        }
+    
+        // Salvando o caminho da imagem se o upload foi bem-sucedido
+        if (req.file) {
+            // Aqui, `req.file.path` é o caminho no servidor onde o arquivo foi salvo
+            product.imgSrc = `/uploads/${req.file.filename}`; // Certifique-se que o caminho seja acessível no frontend
+        } else {
+            product.imgSrc = "default/image/path.jpg"; // Caminho padrão
+        }
+    
+        try {
+            const savedProduct = await productsRepository.save(product);
+            return res.status(200).json(savedProduct);
+        } catch (error) {
+            console.error("Error saving product", error);
+            return res.status(500).json({
+                message: "Error saving product",
+                error: error
+            });
+        }
+    };
+    
+    
+    
 
     static deleteProduct = async (req: Request, res: Response) => {
         const { id } = req.params;

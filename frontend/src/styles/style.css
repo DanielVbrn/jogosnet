@@ -3,10 +3,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Impact, fantasy;
     background-color: #141414;
     color: #fff;
 }
