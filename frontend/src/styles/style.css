@@ -77,11 +77,12 @@ nav ul {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .hero img.highlight-img {
-    width: 150px;
-    height: 200px;
+    width: 250px;
+    height: 300px;
     margin-bottom: 20px;
     object-fit: cover;
 }

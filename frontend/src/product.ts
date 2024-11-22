@@ -3,7 +3,7 @@ class Product {
   nome: string;
   descricao: string;
   preco: number;
-  imgSrc: string;    // Adicionando a propriedade de imagem
+  imgSrc: string;   
 
   constructor(id: number, nome: string, descricao: string, preco:number, imgSrc: string) {
     this.id = id;

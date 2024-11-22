@@ -1,63 +1,47 @@
-import axios from "axios"
-import { Request, Response } from "express"
-import api from "../api"
-import { AppDataSource } from "../data_source"
-import {Products} from "../entities/Products"
+// Import multer
+import multer from "multer";
+import { Request, Response } from "express";
+import { AppDataSource } from "../data_source";
+import { Products } from "../entities/Products";
 
+const upload = multer({ dest: "uploads/" }); // Define a pasta onde as imagens serão salvas
 
 export default class ProductController {
-    static getAllProducts = async (req:Request, res: Response) => {
+    // Endpoint para obter todos os produtos
+    static getAllProducts = async (req: Request, res: Response) => {
         const products = await AppDataSource.getRepository(Products).find();
+        return res.status(200).json(products);
+    };
 
-        return res.json(products).status(200);
-    }
+    // Endpoint para obter um produto pelo nome
+    static getProductByName = async (req: Request, res: Response) => {
+        const { nome } = req.params;
+        const products = await AppDataSource.getRepository(Products).findOneBy({ nome });
+        return res.status(200).json(products);
+    };
 
-    static getProductByName = async (req:Request, res: Response) => {
-        const {nome} = req.params;
-        const productsRepository = AppDataSource.getRepository(Products);
-        
-
-        
-        const products = await AppDataSource.getRepository(Products).findOneBy({nome});
-
-
-        return res.json(products).status(200);
-    }
-
+    // Endpoint para salvar um produto (com imagem)
     static saveProduct = async (req: Request, res: Response) => {
         const productsRepository = AppDataSource.getRepository(Products);
-        
         const product = new Products();
+
+        // Atribuir nome, descrição e preço
         product.nome = req.body.nome;
         product.descricao = req.body.descricao;
-    
-        // Garantindo que o preço seja um número
-        if (typeof req.body.preco === 'number') {
-            product.preco = parseFloat(req.body.preco); 
-        } else {
-            return res.status(400).json({ message: "Preço deve ser um número." });
-        }
-    
-        // Salvando o caminho da imagem se o upload foi bem-sucedido
-        if (req.file) {
-            // Aqui, `req.file.path` é o caminho no servidor onde o arquivo foi salvo
-            product.imgSrc = `/uploads/${req.file.filename}`; // Certifique-se que o caminho seja acessível no frontend
-        } else {
-            product.imgSrc = "default/image/path.jpg"; // Caminho padrão
-        }
-    
+        product.preco = parseFloat(req.body.preco);
+
+        // Salvar o caminho da imagem se foi enviada
+        product.imgSrc = req.body.imgSrc; // Define o caminho acessível no frontend
+   
+
         try {
             const savedProduct = await productsRepository.save(product);
             return res.status(200).json(savedProduct);
         } catch (error) {
-            console.error("Error saving product", error);
-            return res.status(500).json({
-                message: "Error saving product",
-                error: error
-            });
+            console.error("Erro ao salvar o produto", error);
+            return res.status(500).json({ message: "Erro ao salvar o produto", error });
         }
     };
-    
     
     
 

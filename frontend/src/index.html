@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Store</title>
-</head>
-<body>
-    <header>
-        <div class="container">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game Store</title>
+    </head>
+    <body>
+        <header>
+            <div class="container">
             <div class="logo">
                 <h1>
                     <a href="./">GAMER CIRCLE</a>
@@ -24,17 +24,18 @@
             </nav>
         </div>
     </header>
-
+    
     <section class="hero">
         <div class="hero-content">
-            <h2 id="highlight-title">The Witcher 3: Wild Hunt</h2>
-            <p id="highlight-info">RPG | 19 May 2015 | CD Projekt Red</p>
-            <p id="highlight-price" class="price">$29.99</p>
-            <a href="compra.html" class="btn buy">Buy Now</a>  
-            <button class="btn details" id="view-details">View Details</button>
+            <img id="highlight-img" alt="">
+            <h2 id="highlight-title"></h2>
+            <p id="highlight-info"></p>
+            <p id="highlight-price" class="price"></p>
+            <a href="./compra.html" class="btn buy">Comprar</a>  
+            <button class="btn details" id="view-details" onclick="">View Details</button>
         </div>
     </section>
-
+    
     <section id="game-summary" class="game-summary" style="display: none;">
         <h3>Resumo do game</h3>
         <p id="summary-text">The Witcher 3: Wild Hunt é um RPG de mundo aberto ambientado em um universo de fantasia visualmente deslumbrante.</p>
@@ -43,25 +44,29 @@
             <iframe id="trailer-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
-
     <section class="game-grid">
         <!-- Os jogos serão preenchidos dinamicamente aqui -->
+         
     </section>
 
     <div class="view-more-container">
         <button id="view-more" class="btn">Ver Mais</button>
-    </div>
+    </div>    
 
     <footer>
         <p>&copy; 2024 Gamer Circle. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="../dist/bundle.js"></script>
-    <script>
+    <script type="module" src="/dist/bundle.js"></script>
+
+    <script type="module">
+        import ProductUI from './ProductUI.ts'; // Ajuste a extensão do arquivo, se necessário
         document.addEventListener('DOMContentLoaded', async () => {
-            const productUI = new ProductUI();
-            await productUI.initializeApp(); // Inicializa a aplicação
+          const productUI = new ProductUI();
+          window.updateHighlight = productUI.updateHighlight.bind(productUI);
+          await productUI.initializeApp();
         });
-    </script>
+      </script>
+      
 </body>
 </html>

@@ -4,6 +4,7 @@ import { AppDataSource } from "./data_source"
 import routes from "./routes"
 import cors from "cors"
 import bodyParser from "body-parser"
+import path from "path"
 
 
 const app = express()
@@ -16,20 +17,21 @@ AppDataSource.initialize().then(() => {
 const corsOptions = {
     origin: "http://localhost:8080",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],  // Adicione "Authorization" aqui
+    allowedHeaders: ["Content-Type", "Authorization", "Acess-Control-Allow-Headers"],  // Adicione "Authorization" aqui
     credentials: true,
     exposedHeaders: ["Authorization"],
     optionsSuccessStatus: 204,
-    preflightContinue: false,
+    preflightContinue: false,   
 }
 
 
-app.use(express())
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
-app.use('/uploads', express.static('uploads'));
+//app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+//app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(routes)
+
 
 app.listen(3333, () =>{
     console.log("Server is running in http://localhost:3333")
