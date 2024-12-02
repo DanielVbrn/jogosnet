@@ -5,7 +5,7 @@ FROM node:20.9.0
 WORKDIR /app
 
 # Copia o package.json e package-lock.json para o container
-COPY package*.json ./
+COPY package*.json tsconfig.json ./
 
 # Instala as dependências (inclusive as de desenvolvimento)
 RUN npm install
@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 3333
 
 # Comando para iniciar o servidor com nodemon e ts-node
-CMD ["npm", "run start", "src/app.ts", "--exec", "ts-node"]
+CMD ["npm", "run", "start"]
