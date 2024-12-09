@@ -24,7 +24,7 @@ header {
     align-items: center;
 }
 
-.logo h1 a{
+.logo h1 a {
     text-decoration: none;
     color: orange;
 }
@@ -72,7 +72,7 @@ nav ul {
 /* Hero Section */
 .hero {
     background-color: #1c1c1c;
-    height: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,35 +80,83 @@ nav ul {
     text-align: center;
 }
 
+.hero-content {
+    height: 400px;
+}
+
 .hero img.highlight-img {
-    width: 250px;
-    height: 300px;
+    width: 150px;
+    height: 250px;
     margin-bottom: 20px;
     object-fit: cover;
 }
 
 /* Game Summary */
-.game-summary {
+#game-summary {
     background-color: #222;
     padding: 20px;
-    margin: 20px 0;
+    margin: 20px auto;
     text-align: center;
+    max-width: 600px;
+    border-radius: 10px;
 }
 
+#game-summary h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#game-summary p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #bbb;
+}
+
+#game-summary .highlight-price {
+    font-size: 1.5rem;
+    color: orange;
+    margin: 10px 0;
+}
+
+#game-summary .highlight-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#game-summary .highlight-buttons button {
+    background-color: orange;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#game-summary .highlight-buttons button:hover {
+    background-color: #ffcc00;
+}
+
+/* Trailer */
 #trailer-container {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 #trailer-video {
+    width: 100%;
+    max-width: 600px;
     border-radius: 10px;
 }
 
 /* Game Grid */
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
 }
@@ -161,6 +209,7 @@ footer {
     padding: 20px;
     background-color: #222;
 }
+
 .suggestions {
     position: absolute;
     background-color: #1c1c1c;
@@ -182,3 +231,28 @@ footer {
 .suggestions div:hover {
     background-color: #333;
 }
+
+
+#cart-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#cart-btn .fa-shopping-cart {
+    font-size: 24px; /* Tamanho do ícone */
+    color: #333;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+

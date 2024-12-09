@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Game Store</title>
-    </head>
-    <body>
-        <header>
-            <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
             <div class="logo">
                 <h1>
                     <a href="./">GAMER CIRCLE</a>
@@ -16,38 +17,53 @@
             <nav>
                 <ul>
                     <li>
-                        <input type="text" id="search-input" placeholder="Buscar jogo...">
+                        <input type="search" id="search-input" class="search-input" placeholder="Buscar jogo...">
                         <button id="search-btn" class="btn">Buscar</button>
-                        <div id="search-suggestions" class="suggestions"></div>
+                    </li>
+                    <!-- Ícone do carrinho com contador -->
+                    <li>
+                        <button id="cart-btn" class="btn">
+                            <i class="fas fa-shopping-cart"></i> 
+                            <span id="cart-count" class="cart-count">0</span>
+                        </button>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
     
+
     <section class="hero">
         <div class="hero-content">
-            <img id="highlight-img" alt="">
+            <img id="highlight-img" class="highlight-img" alt="Destaque do jogo">
             <h2 id="highlight-title"></h2>
             <p id="highlight-info"></p>
             <p id="highlight-price" class="price"></p>
-            <a href="./compra.html" class="btn buy">Comprar</a>  
-            <button class="btn details" id="view-details" onclick="">View Details</button>
+            <a href="./checkout.html" class="btn buy">Comprar</a>  
+            <button class="btn details" id="view-details">View Details</button>
         </div>
     </section>
-    
+
     <section id="game-summary" class="game-summary" style="display: none;">
         <h3>Resumo do game</h3>
-        <p id="summary-text">The Witcher 3: Wild Hunt é um RPG de mundo aberto ambientado em um universo de fantasia visualmente deslumbrante.</p>
+        <p id="summary-text"></p>
 
         <div id="trailer-container" style="display: none;">
             <iframe id="trailer-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
-    <section class="game-grid">
-        <!-- Os jogos serão preenchidos dinamicamente aqui -->
-         
-    </section>
+
+    <div id="cart-container" style="display: none;">
+        <h2>Carrinho de Compras <span class="material-icons">shopping_cart</span></h2>
+        <div id="cart-items"></div>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+        <button id="checkout-btn">
+            Finalizar Compra <span class="material-icons">credit_card</span>
+        </button>
+    </div>    
+    
+
+    <section id="game-grid" class="game-grid"></section>
 
     <div class="view-more-container">
         <button id="view-more" class="btn">Ver Mais</button>
@@ -58,15 +74,8 @@
     </footer>
 
     <script type="module" src="/dist/bundle.js"></script>
-
     <script type="module">
-        import ProductUI from './ProductUI.ts'; // Ajuste a extensão do arquivo, se necessário
-        document.addEventListener('DOMContentLoaded', async () => {
-          const productUI = new ProductUI();
-          window.updateHighlight = productUI.updateHighlight.bind(productUI);
-          await productUI.initializeApp();
-        });
-      </script>
-      
+
+    </script>
 </body>
 </html>

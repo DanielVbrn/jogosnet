@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    entry: './src/app.ts', // Altere para o caminho do seu arquivo de entrada
+    mode: 'production', // Alterado para produção
+    entry: './src/app.ts',
     module: {
         rules: [
             {
@@ -14,13 +14,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'], // Adicione essas linhas
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             }
-            
         ]
     },
     resolve: {
@@ -33,21 +32,26 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, 'dist'), // Pasta onde o arquivo index.html está
+            directory: path.join(__dirname, 'dist'),
         },
         compress: true,
-        port: 8080, // A porta em que o servidor será executado
-        historyApiFallback: true, // Isso pode ajudar com o roteamento em SPA
+        port: 8080,
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html", // Altere para o caminho do seu index.html
+            template: "./src/index.html",
             filename: 'index.html',
         }),
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'src/uploads', to: 'uploads' }
             ]
-        })
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/checkout.html', to: 'checkout.html' },
+            ],
+        }),
     ],
 };

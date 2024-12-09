@@ -1,0 +1,90 @@
+        /* Reset e estilo geral */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: Arial, Impact, fantasy;
+            background-color: #141414;
+            color: #fff;
+        }
+
+        /* Header */
+        header {
+            background-color: #222;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 a {
+            text-decoration: none;
+            color: orange;
+        }
+
+        /* Checkout Container */
+        #checkout-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #1c1c1c;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #checkout-container h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #checkout-items {
+            margin-bottom: 20px;
+        }
+
+        #checkout-items div {
+            background-color: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        #checkout-items div span {
+            color: orange;
+        }
+
+        #checkout-total {
+            font-size: 1.5rem;
+            color: orange;
+            margin-top: 10px;
+        }
+
+        #checkout-btn {
+            background-color: orange;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        #checkout-btn:hover {
+            background-color: #ffcc00;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            margin-top: 40px;
+        }

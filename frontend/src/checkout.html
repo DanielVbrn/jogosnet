@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/src/styles/checkout_style.css">
+    <title>Checkout</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>
+                    <a href="./">GAMER CIRCLE</a>
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <section id="checkout-container">
+        <h2>Carrinho de Compras</h2>
+        <div id="checkout-items"></div>
+        <p>Total: $<span id="checkout-total">0.00</span></p>
+        <button id="checkout-btn">Finalizar Compra</button>
+    </section>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Carregar carrinho do localStorage
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const checkoutItemsContainer = document.getElementById('checkout-items');
+            const checkoutTotal = document.getElementById('checkout-total');
+
+            // Exibir os itens no checkout
+            if (checkoutItemsContainer) {
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.innerText = `${item.name} - $${item.price.toFixed(2)}`;
+                    checkoutItemsContainer.appendChild(itemElement);
+                });
+
+                // Exibir total do carrinho
+                const total = cart.reduce((acc, item) => acc + item.price, 0);
+                if (checkoutTotal) {
+                    checkoutTotal.innerText = total.toFixed(2);
+                }
+            }
+
+            // Finalizar compra (limpar carrinho)
+            const checkoutBtn = document.getElementById('checkout-btn');
+            checkoutBtn?.addEventListener('click', () => {
+                alert('Compra realizada com sucesso!');
+                localStorage.removeItem('cart'); // Limpar carrinho após compra
+                window.location.href = './'; // Redirecionar para a página inicial
+            });
+        });
+    </script>
+</body>
+</html>
