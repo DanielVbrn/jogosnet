@@ -1,7 +1,8 @@
 import Product from './product';
-import './styles/style.css'; // Certifique-se de que este caminho está correto
-import './styles/stylecompra.css'; 
-import "./styles/checkout_style.css"
+import './styles/style.css';
+import './styles/checkout_style.css';
+import './styles/stylecompra.css';
+
 import ProductUI from './UI/ProductUI';
 
 document.addEventListener('DOMContentLoaded', async () => {

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Store</title>
+
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS: Use importações diretas via JS/TS -->
 </head>
 <body>
     <header>
@@ -32,7 +36,6 @@
         </div>
     </header>
     
-
     <section class="hero">
         <div class="hero-content">
             <img id="highlight-img" class="highlight-img" alt="Destaque do jogo">
@@ -61,7 +64,6 @@
             Finalizar Compra <span class="material-icons">credit_card</span>
         </button>
     </div>    
-    
 
     <section id="game-grid" class="game-grid"></section>
 
@@ -73,9 +75,7 @@
         <p>&copy; 2024 Gamer Circle. Todos os direitos reservados.</p>
     </footer>
 
-    <script type="module" src="/dist/bundle.js"></script>
-    <script type="module">
-
-    </script>
+    <!-- Script do Vite -->
+    <script type="module" src="./app.ts"></script>
 </body>
 </html>
