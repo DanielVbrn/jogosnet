@@ -45,8 +45,8 @@ class Product {
   // Método static porque ele não depende de instâncias de `Product`
   public static async loadGames(): Promise<void> {
     try {
-      //const response = await fetch('https://backend-jogosnet.onrender.com/products'); // Ajuste a URL para sua API
-      const response = await fetch('https=://localhost:3333/products');
+      const response = await fetch('https://backend-jogosnet.onrender.com/products'); // Ajuste a URL para sua API
+      //const response = await fetch('https=://localhost:3333/products');
       const games = await response.json();
 
       const gameGrid = document.querySelector('.game-grid'); // Seleciona o container onde os jogos serão adicionados
