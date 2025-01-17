@@ -7,8 +7,8 @@ const routes = Router()
 
 routes.get("/products", ProductController.getAllProducts);
 routes.post('/products', ProductController.saveProduct);
-routes.delete("/delete-products/:id", ProductController.deleteProduct);
-routes.patch("/update-products/:id", ProductController.updateProduct);
+routes.delete("/products/:id", ProductController.deleteProduct);
+routes.patch("/products/:id", ProductController.updateProduct);
 routes.get("/products/:nome", ProductController.getProductByName)
 
 export default routes;

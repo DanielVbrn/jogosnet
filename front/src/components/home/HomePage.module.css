@@ -1,0 +1,137 @@
+/* Reset e estilo geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Impact, fantasy;
+    background-color: #141414;
+    color: #fff;
+}
+
+/* Header */
+header {
+    background-color: #222;
+    padding: 20px 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 a {
+    text-decoration: none;
+    color: orange;
+    font-size: 1.8rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+
+/* Hero Section */
+.hero {
+    background-color: #1c1c1c;
+    height: 80em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2em;
+}
+
+.hero img {
+    height: 30em;
+    border-radius: 5px;
+    
+}
+
+.hero img:hover {
+    height: 30.1em;
+    border-left: #ffa500 solid 0.5em ;
+    transition: 200ms;
+}
+
+.heroContent {
+    max-width:80em;
+}
+
+.price {
+    color: #ffa500;
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.card {
+    text-align: center;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 15em;
+    height: 20em;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Botão "Ver Mais" */
+.viewMoreContainer {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+/* Carrinho */
+#cartContainer {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: center;
+    display: none; /* Oculto por padrão */
+}
+
+#cartItens {
+    margin-bottom: 20px;
+}
+
+#checkoutBtn {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#checkout-btn:hover {
+    background-color: #32cd32;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #aaa;
+}

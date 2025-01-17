@@ -16,4 +16,8 @@ export class Products {
 
     @Column() // Certifique-se de que a coluna imgSrc seja do tipo string
     imgSrc!: string; // Adicione o tipo e o ponto e vírgula
+
+    @Column()
+    videoSrc!:string
+
 }

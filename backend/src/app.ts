@@ -16,7 +16,7 @@ AppDataSource.initialize().then(() => {
 
 const corsOptions = {
     //origin:"http://localhost:8080",
-    origin: "https://jogosnet-4xf82da2r-danielvbrns-projects.vercel.app/",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Headers"],  // Adicione "Authorization" aqui
     credentials: true,

@@ -4,7 +4,6 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../data_source";
 import { Products } from "../entities/Products";
 
-const upload = multer({ dest: "uploads/" }); // Define a pasta onde as imagens serão salvas
 
 export default class ProductController {
     // Endpoint para obter todos os produtos
@@ -32,7 +31,7 @@ export default class ProductController {
 
         // Salvar o caminho da imagem se foi enviada
         product.imgSrc = req.body.imgSrc; // Define o caminho acessível no frontend
-   
+        product.videoSrc = req.body.videoSrc;
 
         try {
             const savedProduct = await productsRepository.save(product);

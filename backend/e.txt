@@ -1,0 +1,37 @@
+[
+  {
+    "nome": "Red Dead Redemption 2",
+    "descricao": "Um jogo de ação-aventura em mundo aberto ambientado no Velho Oeste, com uma história emocionante e gráficos incríveis.",
+    "preco": 199.99,
+    "imgSrc": "https://flic.kr/p/2qvav77",
+    "videoSrc": "https://www.youtube.com/embed/=42pQvwxnElw"
+  },
+  {
+    "nome": "The Witcher 3: Wild Hunt",
+    "descricao": "Um RPG de fantasia épico com um mundo vasto e escolhas impactantes, estrelando Geralt de Rívia.",
+    "preco": 149.99,
+    "imgSrc": "https://live.staticflickr.com/65535/54151458460_0ac0635ec9_m.jpg",
+    "videoSrc": "https://www.youtube.com/embed/=c0iA0WyFwLQ"
+  },
+  {
+    "nome": "GTA 5",
+    "descricao": "Um dos jogos de mundo aberto mais icônicos, com narrativa intensa e possibilidade de alternar entre três protagonistas.",
+    "preco": 129.99,
+    "imgSrc": "https://flic.kr/p/2qv4Gzy",
+    "videoSrc": "https://www.youtube.com/embed/=QkkoHAzjnUs"
+  },
+  {
+    "nome": "Sonic the Hedgehog",
+    "descricao": "Aventura clássica do ouriço mais rápido do mundo, repleta de velocidade e nostalgia.",
+    "preco": 99.99,
+    "imgSrc": "https://flic.kr/p/2qvav7s",
+    "videoSrc": "https://www.youtube.com/embed/=64hbGT3Ezhs"
+  },
+  {
+    "nome": "Resident Evil Village",
+    "descricao": "Uma mistura de terror e ação com gráficos impressionantes e uma história cativante no universo Resident Evil.",
+    "preco": 179.99,
+    "imgSrc": "https://flic.kr/p/2qv921s",
+    "videoSrc": "https://www.youtube.com/embed/=FffNi1D8CrI"
+  }
+]

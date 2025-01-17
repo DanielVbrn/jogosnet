@@ -1,0 +1,23 @@
+.hero {
+    background-color: #1c1c1c;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+.heroContent {
+    max-width: 100px;
+}
+
+.hero img.highlightImg {
+    width: 150px;
+    height: 250px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
