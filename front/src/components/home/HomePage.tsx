@@ -9,6 +9,7 @@ import styles from "./HomePage.module.css";
 import ProductService from "../../service/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   const [cart, setCart] = useState<Product[]>([]);
@@ -20,14 +21,17 @@ const HomePage: React.FC = () => {
     videoSrc: "",
   });
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const productService = new ProductService();
+  const showMore = useNavigate();
 
   const fetchProducts = async () => {
     try {
       const data = await productService.getAllProducts();
       setProducts(data);
+      setFilteredProducts(data);
 
       if(data.length > 0) {
         const first = data[0];
@@ -67,8 +71,16 @@ const HomePage: React.FC = () => {
   };
 
   const handleSearch = (searchTerm: string) => {
-    // Adicionar lógica para buscar produtos
-    console.log("Buscando por:", searchTerm);
+    if (!searchTerm) {
+      // Se o campo de busca estiver vazio, mostra todos os produtos
+      setFilteredProducts(products);
+    } else {
+      // Filtra os produtos com base no termo digitado
+      const filtered = products.filter((product) =>
+        product.nome.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
   };
 
   const loadMoreProducts = () => {
@@ -76,6 +88,8 @@ const HomePage: React.FC = () => {
   };
 
   const cartTotal = cart.reduce((total, item) => total + item.preco, 0);
+
+  showMore("/game/:id");
 
   return (
     <div className={styles.home}>
@@ -93,7 +107,8 @@ const HomePage: React.FC = () => {
               </li>
               <li>
                 <button className={styles.cartBtn}>
-                <FontAwesomeIcon icon={faShoppingCart} />                  <span className={styles.cartCount}>{cart.length}</span>
+                <span className={styles.cartCount}>{cart.length}</span>
+                <FontAwesomeIcon icon={faShoppingCart} />                  
                 </button>
               </li>
             </ul>
@@ -111,6 +126,7 @@ const HomePage: React.FC = () => {
           videoSrc={highlight.videoSrc}
         />
       </section>
+      <button onClick={}>Ver mais detalhes</button>
 
       {/* Carrinho */}
       <div id={styles.cartContainer} style={{ display: cart.length > 0 ? "block" : "none" }}>
@@ -120,7 +136,7 @@ const HomePage: React.FC = () => {
       {/* Produtos */}
       <section className={styles.gameGrid}>
         <ProductGrid
-          products={products}
+          products={filteredProducts}
           addToCart={addToCart}
           updateHighlight={updateHighlight}
         />
