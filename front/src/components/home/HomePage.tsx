@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const HomePage: React.FC = () => {
   const [cart, setCart] = useState<Product[]>([]);
   const [highlight, setHighlight] = useState({
-    nome: "",
+    nome: "", 
     descricao: "",
     preco: 0,
     imgSrc: "",
@@ -126,7 +126,6 @@ const HomePage: React.FC = () => {
           videoSrc={highlight.videoSrc}
         />
       </section>
-      <button onClick={}>Ver mais detalhes</button>
 
       {/* Carrinho */}
       <div id={styles.cartContainer} style={{ display: cart.length > 0 ? "block" : "none" }}>
