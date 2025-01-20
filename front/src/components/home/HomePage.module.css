@@ -50,15 +50,15 @@ nav ul {
 }
 
 .hero img {
-    height: 30em;
+    height: 20em;
     border-radius: 5px;
     
 }
 
 .hero img:hover {
-    height: 30.1em;
-    border-left: #ffa500 solid 0.5em ;
-    transition: 200ms;
+    height: 22.1em;
+    border-left: #ffa500 solid 0.2em ;
+    transition: 100ms;
 }
 
 .heroContent {

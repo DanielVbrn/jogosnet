@@ -1,5 +1,5 @@
 
-#searchInput {
+.searchInput {
     padding: 10px;
     border: none;
     border-radius: 20px;
@@ -10,11 +10,11 @@
     transition: background-color 0.3s;
 }
 
-#searchInput::placeholder {
+.searchInput::placeholder {
     color: #aaa;
 }
 
-#searchInput:focus {
+.searchInput:focus {
     background-color: #444;
 }
 

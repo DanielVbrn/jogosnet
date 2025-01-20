@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import HomePage from './components/home/HomePage'
+import { Route, Routes } from 'react-router-dom'
 
 
-function App() {
+export  default function App() {
   return (
-      <HomePage />
-  )
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
+  );
 }
-
-export default App
