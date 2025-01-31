@@ -1,11 +1,16 @@
-import HomePage from './components/home/HomePage'
-import { Route, Routes } from 'react-router-dom'
+import GameDetails from './components/GameDetails/GameDetails';
+import HomePage from './pages/home/HomePage';
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+export default function App() {
 
-export  default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Navigate to='home'></Navigate>}/>
+        <Route path="/home" element={ <HomePage />} />
+        <Route path="/home/game/:id" element={<GameDetails />} />
+      </Routes>
+    </Router>
   );
 }

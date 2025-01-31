@@ -5,11 +5,11 @@ import Product from '../../model/Product';
 interface ProductCardProps {
   product: Product;
   addToCart: (product: Product) => void;
-  updateHighlight: (title: string, info: string, price: number, imgSrc: string, videoSrc:string) => void;
+  updateHighlight: (id:number, title: string, info: string, price: number, imgSrc: string, videoSrc:string) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart, updateHighlight }) => (
-  <div className={styles.card} onClick={() => updateHighlight(product.nome, product.descricao, product.preco, product.imgSrc, product.videoSrc)}>
+  <div className={styles.card} onClick={() => updateHighlight(product.id, product.nome, product.descricao, product.preco, product.imgSrc, product.videoSrc)}>
     <img src={product.imgSrc} alt={product.nome} />
     <h3>{product.nome}</h3>
     <p>${product.preco.toFixed(2)}</p>
