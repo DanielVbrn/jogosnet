@@ -8,7 +8,18 @@ dotenv.config()
 const nameDB = process.env.NAMEDB
 const userDB = process.env.USER_NAME
 const passwordDB = process.env.USER_PASSWORD
+const database_url = process.env.DATABASE_URL
 
+export const AppDataSource = new DataSource({
+    type:'postgres',
+    url:database_url ,
+    entities: [Products], 
+    synchronize: true, 
+    migrations: [], 
+    logging: true,
+})
+
+/*
 export const AppDataSource = new DataSource({
     type:"postgres",
     host:"localhost",
@@ -21,3 +32,4 @@ export const AppDataSource = new DataSource({
     synchronize:true,
 
 })
+*/
