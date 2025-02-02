@@ -12,7 +12,7 @@
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*',
-          'Authorization': true
+          'Authorization': true 
         },
       });
     }
