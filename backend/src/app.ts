@@ -15,8 +15,7 @@ AppDataSource.initialize().then(() => {
 
 
 const corsOptions = {
-    //origin:"http://localhost:8080",
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Headers"],  // Adicione "Authorization" aqui
     credentials: true,
@@ -28,8 +27,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
-//app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-//app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(routes)
 

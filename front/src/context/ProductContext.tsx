@@ -6,10 +6,11 @@ interface ProductContextProps {
   products: Product[];
   filteredProducts: Product[];
   cart: Product[];
-  highlight: Product | null;
+  highlight: Product | undefined;
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   handleSearch: (searchTerm: string) => void;
+  setHighlight: (product: Product | undefined) => void; // Corrigido
 }
 
 const ProductContext = createContext<ProductContextProps | undefined>(undefined);
@@ -18,7 +19,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
-  const [highlight, setHighlight] = useState<Product | null>(null);
+  const [highlight, setHighlight] = useState<Product | undefined>(undefined); // Corrigido
 
   const productService = new ProductService();
 
@@ -52,6 +53,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     }
   };
 
+
   return (
     <ProductContext.Provider
       value={{
@@ -62,8 +64,9 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
         addToCart,
         removeFromCart,
         handleSearch,
-      }}
-    >
+        setHighlight, 
+        }}
+      >
       {children}
     </ProductContext.Provider>
   );

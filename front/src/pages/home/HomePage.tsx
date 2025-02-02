@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 
 const HomePage: React.FC = () => {
-  const { cart, filteredProducts, highlight, addToCart } = useProductContext();
+  const { cart, filteredProducts, highlight, addToCart, removeFromCart, setHighlight } = useProductContext();
   const navigate = useNavigate();
+
 
   return (
     <div className={styles.home}>
@@ -25,15 +26,15 @@ const HomePage: React.FC = () => {
             videoSrc={highlight.videoSrc}
           />
         )}
-        <button onClick={() => navigate(`/home/game/${highlight?.id}`)}>Ver mais</button>
+        <button onClick={() => setHighlight(highlight)}>Ver mais</button>
       </section>
 
       <div id={styles.cartContainer} style={{ display: cart.length > 0 ? "block" : "none" }}>
-        <Cart cart={cart} />
+        <Cart cart={cart} removeFromCart={removeFromCart} total={cart.reduce((acc, product) => acc + product.preco, 0)} />
       </div>
 
       <section className={styles.gameGrid}>
-        <ProductGrid products={filteredProducts} addToCart={addToCart} />
+        <ProductGrid products={filteredProducts} addToCart={addToCart} setHighlight={setHighlight} />
       </section>
 
       <footer className={styles.footer}>
