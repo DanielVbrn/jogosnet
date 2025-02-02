@@ -24,7 +24,7 @@ const Cart:React.FC<CartProps> = ({cart,removeFromCart, total}) => {
 
       </div>
       <div className={styles.cartTotal}>
-        Total: ${total.toFixed(2)}
+        : ${total.toFixed(2)}
       </div>
 
         <li>

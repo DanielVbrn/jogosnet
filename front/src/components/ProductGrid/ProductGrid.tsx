@@ -6,17 +6,17 @@ import Product from '../../model/Product';
 interface ProductGridProps {
   products: Product[];
   addToCart: (product: Product) => void;
-  updateHighlight: (title: string, info: string, price: number, imgSrc: string, videoSrc:string) => void;
+  setHighlight: (product: Product) => void; // Corrigido para setHighlight
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ products, addToCart, updateHighlight }) => (
+const ProductGrid: React.FC<ProductGridProps> = ({ products, addToCart, setHighlight }) => (
   <div id={styles.gameGrid} className={styles.gameGrid}>
     {products.map((product) => (
       <ProductCard
         key={product.id}
         product={product}
         addToCart={addToCart}
-        updateHighlight={updateHighlight}
+        setHighlight={setHighlight} // Passando setHighlight para o ProductCard
       />
     ))}
   </div>

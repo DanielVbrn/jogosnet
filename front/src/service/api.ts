@@ -5,13 +5,14 @@
     public baseURL: string;
 
     constructor() {
-      this.baseURL = 'http://localhost:3333'
-      //this.baseURL = 'https://backend-jogosnet.onrender.com/'; // Armazene a URL base como string
+      //this.baseURL = 'http://localhost:3333'
+      this.baseURL = 'https://backend-jogosnet.onrender.com'; 
       this.api = axios.create({
         baseURL: this.baseURL,
         headers: {
           'Content-Type': 'application/json',
-          
+          'Accept': '*',
+          'Authorization': true
         },
       });
     }
