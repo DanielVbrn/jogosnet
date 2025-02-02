@@ -1,120 +1,148 @@
 /* Header.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 .header {
-    background-color: #1e1e2f; 
+    background-color: #121212; /* Fundo escuro elegante */
     color: #fff;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem;
     display: flex;
-    flex-direction: column; 
-    border-bottom: 2px solid #2a2a3d;
-  }
+    flex-direction: column;
+    border-bottom: 1px solid #2a2a2a;
+    font-family: 'Inter', sans-serif;
+}
 
 .header img {
-    width: 200px;
+    width: 160px;
 }
-  
-  .container {
+
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-  }
-  
-  .logo h1 a {
+}
+
+/* Logo com espaçamento adequado */
+.logo h1 a {
     text-decoration: none;
-    color: #ffa500  ; 
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  .logo h1 a:hover {
-    color: #4caf50; 
-    transition: color 0.3s ease;
-  }
-  
-  nav ul {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.logo h1 a:hover {
+    opacity: 0.7;
+}
+
+/* Navegação - Menu */
+nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     margin: 0;
     padding: 0;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     position: relative;
-  }
-  
-  .navList {
+}
+
+.navList {
     justify-content: center;
-    gap: 1rem;
-  }
-  
-  .navList a {
+    gap: 1.5rem;
+}
+
+.navList a {
     text-decoration: none;
+    color: #d1d1d1;
+    font-weight: 600;
+    padding: 0.5rem;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.navList a:hover {
     color: #fff;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-size: 1.2em;
-  }
-  
-  .navList a:hover {
-    background-color: #ffa500; 
-    color: #fff;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cartBtn {
+}
+
+/* Botão de Carrinho */
+.cartBtn {
     display: flex;
     align-items: center;
-    background-color: #ffa500;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 0.6rem 1.2rem;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .cartBtn:hover {
-    background-color: #ffa500;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cartCount {
-    background-color: #ff5252; 
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.cartBtn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Número de Itens no Carrinho */
+.cartCount {
+    background-color: #ff5252;
     color: #fff;
     font-size: 0.8rem;
     font-weight: bold;
     border-radius: 50%;
-    padding: 0.2rem 0.5rem;
-    margin-right: 0.5rem;
-  }
-  
-  .searchBarContainer {
+    padding: 0.3rem 0.6rem;
+    margin-left: 0.5rem;
+}
+
+/* Campo de Pesquisa */
+.searchBarContainer {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-  }
-  
-  @media (max-width: 768px) {
+    background: #2a2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.searchBarContainer input {
+    background: none;
+    border: none;
+    color: #fff;
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+}
+
+.searchBarContainer input::placeholder {
+    color: #b3b3b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
     .header {
-      flex-direction: column;
-      padding: 1rem;
+        padding: 1rem;
     }
-  
+
     .container {
-      flex-direction: column;
-      gap: 1rem;
+        flex-direction: column;
+        gap: 1rem;
     }
-  
+
     .navList {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
     }
-  
+
     .cartBtn {
-      width: 100%;
-      justify-content: center;
+        width: 100%;
+        justify-content: center;
     }
-  }
-  
+
+    .searchBarContainer {
+        width: 100%;
+    }
+}

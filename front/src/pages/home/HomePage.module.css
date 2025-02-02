@@ -40,7 +40,7 @@ nav ul {
 /* Hero Section */
 .hero {
     background-color: #1c1c1c;
-    height: 80em;
+    height: 40em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,15 +50,15 @@ nav ul {
 }
 
 .hero img {
-    height: 20em;
+    height: 25em;
     border-radius: 5px;
     
 }
 
 .hero img:hover {
-    height: 22.1em;
+    height: 26em;
     border-left: #ffa500 solid 0.2em ;
-    transition: 100ms;
+    transition: 180ms;
 }
 
 .heroContent {
@@ -93,6 +93,7 @@ nav ul {
 
 /* Botão "Ver Mais" */
 .viewMoreContainer {
+    margin-top: 2em;
     display: flex;
     justify-content: center;
     margin: 2em 0;

@@ -1,6 +1,75 @@
+/* Reset e estilo geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Impact, fantasy;
+    background-color: #141414;
+    color: #fff;
+}
+
+/* GameDetails */
 .gameDetails {
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
-    justify-content: space-around;
+    background-color: #222;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.gameDetails h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffa500;
+}
+
+.gameDetails p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.gameDetails img {
+    width: 20em;
+    max-width: 600px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.gameDetails img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.reactPlayerContainer {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    margin-top: 20px;        /* Espaçamento superior, caso necessário */
+}
+
+
+/* Botão de voltar */
+.backButton {
+    padding: 10px 20px;
+    background-color: #ffa500;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    margin-top: 2em;
+}
+
+.backButton:hover {
+    background-color: #ff8c00;
 }
