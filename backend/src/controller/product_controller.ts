@@ -9,7 +9,7 @@ export default class ProductController {
     // Endpoint para obter todos os produtos
     static getAllProducts = async (req: Request, res: Response) => {
         const products = await AppDataSource.getRepository(Products).find();
-        return res.status(200).json(products);
+        return res.status(200   ).json(products);
     };
 
     // Endpoint para obter um produto pelo nome

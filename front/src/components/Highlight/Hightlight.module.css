@@ -1,23 +1,97 @@
+/* 🔥 HighLight Section */
 .hero {
-    background-color: #1c1c1c;
-    height: 500px;
+    background-color: #121212; /* Fundo mais escuro */
+    height: 600px; /* Ajustado para se alinhar melhor com a home */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); /* Camada escura */
+    z-index: 1;
 }
 
 .heroContent {
-    max-width: 100px;
+    max-width: 1000px;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #ffa500; /* Cor destacada */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #ccc;
 }
 
 .hero img.highlightImg {
-    width: 150px;
-    height: 250px;
-    margin-bottom: 20px;
+    width: 200px; /* Imagem ajustada para ter um tamanho adequado */
+    height: 320px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out, border-left 0.2s ease-in-out;
+    z-index: 2;
 }
 
+.hero img.highlightImg:hover {
+    transform: scale(1.02); /* Efeito de zoom suave */
+    border-left: #ffa500 solid 0.3rem;
+}
+
+/* 🌟 Adicionando um botão de ação no HighLight */
+.hero .actionBtn {
+    background-color: #ffa500;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    z-index: 2;
+}
+
+.hero .actionBtn:hover {
+    background-color: #ff8200;
+}
+
+/* 📱 Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        padding: 2rem 1rem;
+    }
+
+    .hero img.highlightImg {
+        width: 180px; /* Ajustado para tela pequena */
+        height: 280px;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero .actionBtn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

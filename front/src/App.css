@@ -1,0 +1,163 @@
+/* Reset e estilo geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Impact, fantasy;
+    background-color: #141414; /* Fundo escuro */
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Global Container para centralizar o conteúdo */
+.container {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header - Navbar global */
+.header {
+    background-color: #222;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.logo h1 a {
+    text-decoration: none;
+    color: #ffa500;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.navList a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.navList a:hover {
+    background-color: #ffa500;
+    color: #fff;
+}
+
+/* Botão de carrinho */
+.cartBtn {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cartBtn:hover {
+    background-color: #ff8200;
+    transition: background-color 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #1c1c1c;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.hero img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hero img:hover {
+    transform: scale(1.05);
+    border-left: #ffa500 solid 0.3rem;
+}
+
+/* Seção de GameDetails */
+.gameDetails {
+    background-color: #1c1c1c;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.gameDetails img {
+    max-width: 500px;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+}
+
+.gameDetails h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffa500;
+}
+
+.gameDetails p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+}
+
+.gameDetails .actionBtn {
+    background-color: #ffa500;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.gameDetails .actionBtn:hover {
+    background-color: #ff8200;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    .hero img {
+        width: 200px;
+        height: 280px;
+    }
+
+    .gameDetails img {
+        max-width: 100%;
+    }
+}

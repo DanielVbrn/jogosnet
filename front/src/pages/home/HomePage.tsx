@@ -5,16 +5,14 @@ import Highlight from "../../components/Highlight/Highlight";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import styles from "./HomePage.module.css";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
+
 
 const HomePage: React.FC = () => {
   const { cart, filteredProducts, highlight, addToCart, removeFromCart, setHighlight } = useProductContext();
-  const navigate = useNavigate();
-
+  const navigate = useNavigate()
 
   return (
     <div className={styles.home}>
-      <Header />
 
       <section className={styles.hero}>
         {highlight && (
@@ -26,7 +24,7 @@ const HomePage: React.FC = () => {
             videoSrc={highlight.videoSrc}
           />
         )}
-        <button onClick={() => setHighlight(highlight)}>Ver mais</button>
+        <button onClick={() => navigate(`game/${highlight?.id}`)}>Ver mais</button>
       </section>
 
       <div id={styles.cartContainer} style={{ display: cart.length > 0 ? "block" : "none" }}>
