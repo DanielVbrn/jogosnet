@@ -17,7 +17,7 @@
       });
     }
 
-
+    
     async getAllProducts() {  
       try {
         const response = await this.api.get('/products');

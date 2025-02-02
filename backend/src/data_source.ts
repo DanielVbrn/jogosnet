@@ -1,5 +1,5 @@
 import {DataSource} from "typeorm"
-import {Products} from "./entities/Products"
+import {Products} from "./entity/Products"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -11,16 +11,16 @@ const passwordDB = process.env.USER_PASSWORD
 
 
 
-
 export const AppDataSource = new DataSource({
-    type:"postgres",
-    host:"localhost",
-    port:5432,
-    username:userDB,
-    password:passwordDB,
-    database:nameDB,
-    entities:[Products],
-    migrations:[Products],
-    synchronize:true,
+    type: "postgres",
+    url: process.env.DATABASE_URL,  // Usa a variável de ambiente
+    synchronize: true,
+    logging: false,
+    entities: ["src/entity/*.ts"],
+    migrations: ["src/migration/*.ts"],
+    subscribers: ["src/subscriber/*.ts"],
+    ssl: {
+        rejectUnauthorized: false, // Importante para conexão segura no Render
+    }
+});
 
-})
