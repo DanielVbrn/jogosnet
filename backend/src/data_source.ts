@@ -17,7 +17,7 @@ export const AppDataSource = new DataSource({
     password:passwordDB,
     database:nameDB,
     entities:[Products],
-    migrations:["./entities/**.ts"],
+    migrations:[Products],
     synchronize:true,
 
 })

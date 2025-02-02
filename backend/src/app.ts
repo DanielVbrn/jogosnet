@@ -17,7 +17,7 @@ AppDataSource.initialize().then(() => {
 const corsOptions = {
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Headers"],  // Adicione "Authorization" aqui
+    allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Headers"], 
     credentials: true,
     exposedHeaders: ["Authorization"],
     optionsSuccessStatus: 204,
@@ -25,8 +25,8 @@ const corsOptions = {
 }
 
 
-app.use(cors(corsOptions))
 app.use(bodyParser.json());
+app.use(cors(corsOptions))
 
 app.use(routes)
 
