@@ -2,7 +2,7 @@
 import multer from "multer";
 import { Request, Response } from "express";
 import { AppDataSource } from "../data_source";
-import { Products } from "../entity/Products";
+import { Products } from "../entities/Products";
 
 
 export default class ProductController {

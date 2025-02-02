@@ -1,5 +1,5 @@
 import {DataSource} from "typeorm"
-import {Products} from "./entity/Products"
+import {Products} from "./entities/Products"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -16,7 +16,7 @@ export const AppDataSource = new DataSource({
     url: process.env.DATABASE_URL,  // Usa a variável de ambiente
     synchronize: true,
     logging: false,
-    entities: ["src/entity/*.ts"],
+    entities: ["src/entities/*.ts"],
     migrations: ["src/migration/*.ts"],
     subscribers: ["src/subscriber/*.ts"],
     ssl: {
