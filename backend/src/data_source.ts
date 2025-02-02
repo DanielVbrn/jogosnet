@@ -13,7 +13,7 @@ const passwordDB = process.env.USER_PASSWORD
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    url: process.env.DATABASE_URL,  // Usa a variável de ambiente
+    url: process.env.DATABASE_URL,  
     synchronize: true,
     logging: false,
     entities: ["src/entities/*.ts"],
