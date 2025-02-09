@@ -1,46 +1,28 @@
-import "reflect-metadata"
-import express, { Request, Response } from "express"
-import { AppDataSource } from "./data_source"
-import routes from "./routes"
-import cors from "cors"
-import bodyParser from "body-parser"
-import path from "path" 
+import "reflect-metadata";
+import express from "express";
+import { AppDataSource } from "./data_source";
+import routes from "./routes";
+import cors from "cors";
 
+const app = express();
 
-const app = express()
-
-AppDataSource.initialize().then(() => {
-
-}).catch((error) => console.log(error))
-
+AppDataSource.initialize()
+  .then(() => console.log("📦 Banco de dados conectado com sucesso!"))
+  .catch((error) => console.error("Erro ao conectar ao banco de dados:", error));
 
 const corsOptions = {
-    origin: ["https://front-chi-six.vercel.app/", "https://backend-jogosnet.onrender.com"], 
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
+  origin: ["https://front-chi-six.vercel.app", "https://backend-jogosnet.onrender.com"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
+app.use(express.json()); // Usa o próprio Express para JSON
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-    next();
-});
-
-
-
-app.use(bodyParser.json());
-app.use(cors(corsOptions))
-
-app.use(routes)
-
+app.use(routes);
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
-
