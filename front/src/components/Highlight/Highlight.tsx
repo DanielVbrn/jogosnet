@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from "./Hightlight.module.css"
-import ReactPlayer from 'react-player';
 
 
 interface HighlightProps {
