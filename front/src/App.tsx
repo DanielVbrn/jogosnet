@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ProductProvider } from './context/ProductContext';
 import HomePage from './pages/home/HomePage';
 import GameDetails from './components/GameDetails/GameDetails';
