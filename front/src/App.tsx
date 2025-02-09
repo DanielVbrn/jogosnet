@@ -11,8 +11,7 @@ export default function App() {
         <div className="container">
           <Header/>
           <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/home/game/:id" element={<GameDetails />} />
           </Routes>
         </div>
