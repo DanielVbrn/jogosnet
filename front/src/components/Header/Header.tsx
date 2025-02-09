@@ -33,7 +33,7 @@ const Header: React.FC = () => {
       </div>
       <nav>
         <ul className={styles.navList}>
-          <li><a href="/">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="/about">Sobre</a></li>
           <li><a href="/contact">Contato</a></li>
         </ul>
