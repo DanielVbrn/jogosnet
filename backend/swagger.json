@@ -1,0 +1,155 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "API para gerenciamento de produtos",
+      "version": "1.0.0",
+      "title": "Product API"
+    },
+    "host": "localhost:3333",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "products",
+        "description": "Operações relacionadas a produtos"
+      }
+    ],
+    "paths": {
+      "/products": {
+        "get": {
+          "tags": ["products"],
+          "summary": "Listar todos os produtos",
+          "responses": {
+            "200": {
+              "description": "Lista de produtos",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["products"],
+          "summary": "Salvar um novo produto",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "product",
+              "description": "Produto a ser adicionado",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Produto criado com sucesso"
+            }
+          }
+        }
+      },
+      "/products/{id}": {
+        "delete": {
+          "tags": ["products"],
+          "summary": "Deletar um produto",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID do produto"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto deletado com sucesso"
+            }
+          }
+        },
+        "patch": {
+          "tags": ["products"],
+          "summary": "Atualizar um produto",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID do produto"
+            },
+            {
+              "in": "body",
+              "name": "product",
+              "description": "Produto a ser atualizado",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto atualizado com sucesso"
+            }
+          }
+        }
+      },
+      "/products/{nome}": {
+        "get": {
+          "tags": ["products"],
+          "summary": "Buscar produto pelo nome",
+          "parameters": [
+            {
+              "name": "nome",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "Nome do produto"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto encontrado"
+            },
+            "404": {
+              "description": "Produto não encontrado"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome do produto"
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do produto"
+          },
+          "preco": {
+            "type": "number",
+            "format": "float",
+            "description": "Preço do produto"
+          },
+          "imgSrc": {
+            "type": "string",
+            "description": "URL da imagem do produto"
+          },
+          "videoSrc": {
+            "type": "string",
+            "description": "URL do vídeo do produto"
+          }
+        },
+        "required": ["nome", "descricao", "preco", "imgSrc", "videoSrc"]
+      }
+    }
+  }
+  
