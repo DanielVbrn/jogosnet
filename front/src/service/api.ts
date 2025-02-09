@@ -12,7 +12,6 @@
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*',
-          'Authorization': true 
         },
       });
     }
@@ -31,7 +30,7 @@
     async getProductByName(nome: string) {
       try {
           const response = await this.api.get(`/products/${nome}`);
-          console.log(response.data); // Adicione este log
+          console.log(response.data); 
           return response.data;
       } catch (error) {
           console.error('Erro ao buscar produto pelo nome:', error);
