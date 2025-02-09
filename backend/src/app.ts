@@ -4,7 +4,7 @@ import { AppDataSource } from "./data_source"
 import routes from "./routes"
 import cors from "cors"
 import bodyParser from "body-parser"
-import path from "path"
+import path from "path" 
 
 
 const app = express()
@@ -15,7 +15,7 @@ AppDataSource.initialize().then(() => {
 
 
 const corsOptions = {
-    origin: ["http://localhost:5173", "https://backend-jogosnet.onrender.com"], // Permite o frontend acessar
+    origin: ["https://front-chi-six.vercel.app/", "https://backend-jogosnet.onrender.com"], 
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
