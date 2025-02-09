@@ -30,49 +30,34 @@ Este é um projeto de e-commerce para venda de jogos digitais, desenvolvido com 
 1. Clone o repositório:
    ```
    git clone https://github.com/DanielVbrn/jogosnet.git
-Acesse a pasta do frontend:
 
 
-Copiar
-Editar
+2. Acesse a pasta do frontend:
 cd frontend
-Instale as dependências:
 
 
-Copiar
-Editar
-npm install
-Execute o projeto:
+3. Instale as dependências:
+- npm install
 
 
-Copiar
-Editar
-npm run dev
-Backend
-Acesse a pasta do backend:
+4. Execute o projeto:
+- npm run dev
+
+## **Backend**
+1. Acesse a pasta do backend:
+- cd backend
+
+2. Instale as dependências:
+- npm install
+
+3. Configure as variáveis de ambiente no arquivo .env:
+
+- DATABASE_URL=seu_banco_de_dados
+
+4. Execute o backend:
+- npm run start
 
 
-Copiar
-Editar
-cd backend
-Instale as dependências:
-
-
-Copiar
-Editar
-npm install
-Configure as variáveis de ambiente no arquivo .env:
-
-ini
-Copiar
-Editar
-DATABASE_URL=seu_banco_de_dados
-Execute o backend:
-
-
-Copiar
-Editar
-npm run start
 📌 Funcionalidades
 📦 Cadastro, listagem, edição e remoção de jogos
 🛒 Carrinho de compras
