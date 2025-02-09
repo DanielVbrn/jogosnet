@@ -3,6 +3,7 @@ import express from "express";
 import { AppDataSource } from "./data_source";
 import routes from "./routes";
 import cors from "cors";
+import { setupSwagger } from "./swagger";
 
 const app = express();
 
@@ -21,6 +22,9 @@ app.use(cors(corsOptions));
 app.use(express.json()); // Usa o próprio Express para JSON
 
 app.use(routes);
+
+setupSwagger(app);
+
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => {
