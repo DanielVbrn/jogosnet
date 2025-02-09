@@ -4,6 +4,9 @@ Este é um projeto de e-commerce para venda de jogos digitais, desenvolvido com 
 
 ---
 
+## Documentação da API
+[Link da API](https://backend-jogosnet.onrender.com/api-docs/#/)
+
 ## 🚀 Tecnologias Utilizadas
 
 ### **Frontend**
