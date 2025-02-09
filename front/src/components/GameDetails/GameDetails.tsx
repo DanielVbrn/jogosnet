@@ -66,7 +66,7 @@ const GameDetails: React.FC = () => {
                     )}
                     <button
                         className={styles.backButton}
-                        onClick={() => navigate('/home')}
+                        onClick={() => navigate('/')}
                     >
                         Voltar
                     </button>
