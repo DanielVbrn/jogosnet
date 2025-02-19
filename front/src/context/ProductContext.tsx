@@ -56,6 +56,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       console.error("Erro ao carregar produtos", error);
     }
   };
+  fetchProducts();
 
 
   useEffect(() => {
