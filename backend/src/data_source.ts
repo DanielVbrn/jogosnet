@@ -1,8 +1,7 @@
 import {DataSource} from "typeorm"
 import {Products} from "./entities/Products"
-import dotenv from "dotenv"
+import { config } from "./config/config"
 
-dotenv.config()
 
 
 const nameDB = process.env.NAMEDB
@@ -13,7 +12,7 @@ const passwordDB = process.env.USER_PASSWORD
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    url: process.env.DATABASE_URL,  
+    url: config.databaseUrl,  
     synchronize: true,
     logging: false,
     entities: ["src/entities/*.ts"],
