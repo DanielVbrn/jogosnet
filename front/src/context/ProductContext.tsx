@@ -19,7 +19,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
-  const [highlight, setHighlight] = useState<Product | undefined>(undefined); 
+  const [highlight, setHighlightState] = useState<Product | undefined>(undefined); 
 
   const productService = new ProductService();
 
@@ -44,7 +44,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     }
 
   }, []);
-  
+
   const fetchProducts = async () => {
     try {
       const data = await productService.getAllProducts();
@@ -58,6 +58,15 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
   fetchProducts();
 
+  const setHighlight = (product: Product | undefined) => {
+    if (product) {
+      localStorage.setItem("highlight", JSON.stringify(product));
+    } else {
+      localStorage.removeItem("highlight");
+    }
+    setHighlightState(product);
+  };
+  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
