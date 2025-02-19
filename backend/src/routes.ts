@@ -40,7 +40,7 @@ routes.get("/products", ProductController.getAllProducts);
  *               videoSrc:
  *                 type:string
  *     responses:
- *       201:
+ *       200:
  *         description: Produto criado com sucesso.
  *       400:
  *         description: Erro ao criar produto.
