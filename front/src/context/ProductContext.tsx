@@ -19,28 +19,67 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
-  const [highlight, setHighlight] = useState<Product | undefined>(undefined); // Corrigido
+  const [highlight, setHighlight] = useState<Product | undefined>(undefined); 
 
   const productService = new ProductService();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await productService.getAllProducts();
-        setProducts(data);
-        setFilteredProducts(data);
-        if (data.length > 0) setHighlight(data[0]);
-      } catch (error) {
-        console.error("Erro ao carregar produtos", error);
+    const storedProducts = localStorage.getItem("products");
+    const storedCart = localStorage.getItem("cart");
+    const storedHighLight = localStorage.getItem("highlight");
+
+    if(storedProducts) {
+      const parseProducts = JSON.parse(storedProducts);
+      setProducts(parseProducts);
+      setFilteredProducts(parseProducts);
+      if(storedHighLight) {
+        setHighlight(JSON.parse(storedHighLight));
       }
-    };
-    fetchProducts();
+    } else {
+      fetchProducts();
+    }
+
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+
   }, []);
+  
+  const fetchProducts = async () => {
+    try {
+      const data = await productService.getAllProducts();
+      setProducts(data);
+      setFilteredProducts(data);
+      if (data.length > 0) setHighlight(data[0]);
+      localStorage.setItem("products", JSON.stringify(data));
+    } catch (error) {
+      console.error("Erro ao carregar produtos", error);
+    }
+  };
 
-  const addToCart = (product: Product) => setCart((prevCart) => [...prevCart, product]);
 
-  const removeFromCart = (productId: number) =>
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    if (highlight) {
+      localStorage.setItem("highlight", JSON.stringify(highlight));
+    }
+  }, [highlight]);
+
+
+  const addToCart = (product: Product) => {
+    const updatedCart = [...cart, product];
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); 
+  };
+
+  const removeFromCart = (productId: number) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
 
   const handleSearch = (searchTerm: string) => {
     if (!searchTerm) {
