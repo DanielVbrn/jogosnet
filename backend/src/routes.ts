@@ -35,6 +35,10 @@ routes.get("/products", ProductController.getAllProducts);
  *                 type: number
  *               descricao:
  *                 type: string
+ *               imgSrc:
+ *                 type:string
+ *               videoSrc:
+ *                 type:string
  *     responses:
  *       201:
  *         description: Produto criado com sucesso.
