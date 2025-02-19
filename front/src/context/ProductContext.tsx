@@ -52,20 +52,20 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       const data = await productService.getAllProducts();
       setProducts(data);
       setFilteredProducts(data);
-      if (data.length > 0) setHighlight(data[0]);
+  
+      const storedHighLight = localStorage.getItem("highlight");
+      if (!storedHighLight && data.length > 0) {
+        setHighlightState(data[0]);
+      }
+  
       localStorage.setItem("products", JSON.stringify(data));
     } catch (error) {
       console.error("Erro ao carregar produtos", error);
     }
   };
-  fetchProducts();
+  
 
   const setHighlight = (product: Product | undefined) => {
-    if (product) {
-      localStorage.setItem("highlight", JSON.stringify(product));
-    } else {
-      localStorage.removeItem("highlight");
-    }
     setHighlightState(product);
   };
   
@@ -78,7 +78,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     if (highlight) {
       localStorage.setItem("highlight", JSON.stringify(highlight));
     }
-  }, [highlight]);
+  }, [highlight]); 
 
 
   const addToCart = (product: Product) => {
