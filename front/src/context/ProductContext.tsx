@@ -27,23 +27,25 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     const storedProducts = localStorage.getItem("products");
     const storedCart = localStorage.getItem("cart");
     const storedHighLight = localStorage.getItem("highlight");
-
-    if(storedProducts) {
+  
+    if (storedProducts) {
       const parseProducts = JSON.parse(storedProducts);
       setProducts(parseProducts);
       setFilteredProducts(parseProducts);
-      if(storedHighLight) {
-        setHighlight(JSON.parse(storedHighLight));
+  
+      // Só define highlight se ainda não foi definido no estado
+      if (storedHighLight && !highlight) {
+        setHighlightState(JSON.parse(storedHighLight));
       }
     } else {
       fetchProducts();
     }
-
+  
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-
   }, []);
+  
 
   const fetchProducts = async () => {
     try {
