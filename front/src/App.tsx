@@ -4,6 +4,7 @@ import HomePage from './pages/home/HomePage';
 import GameDetails from './components/GameDetails/GameDetails';
 import './App.css'; 
 import Header from './components/Header/Header';
+import CartPage from './pages/cart/CartPage';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/home/game/:id" element={<GameDetails />} />
+          <Route path='/cart' element={<CartPage />} />
         </Routes>
       </div>
     </ProductProvider>

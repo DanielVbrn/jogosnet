@@ -10,7 +10,7 @@ interface ProductContextProps {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   handleSearch: (searchTerm: string) => void;
-  setHighlight: (product: Product | undefined) => void; // Corrigido
+  setHighlight: (product: Product | undefined) => void; 
 }
 
 const ProductContext = createContext<ProductContextProps | undefined>(undefined);
@@ -33,7 +33,6 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
       setProducts(parseProducts);
       setFilteredProducts(parseProducts);
   
-      // Só define highlight se ainda não foi definido no estado
       if (storedHighLight && !highlight) {
         setHighlightState(JSON.parse(storedHighLight));
       }

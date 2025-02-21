@@ -5,9 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const { cart, handleSearch } = useProductContext();
+  const navigate = useNavigate();
+
 
   return (
     <header className={styles.header}>
@@ -23,7 +26,7 @@ const Header: React.FC = () => {
               <SearchBar onSearch={handleSearch} />
             </li>
             <li>
-              <button className={styles.cartBtn}>
+              <button className={styles.cartBtn} onClick={() => navigate("/cart")}>
                 <span className={styles.cartCount}>{cart.length}</span>
                 <FontAwesomeIcon icon={faShoppingCart} />
               </button>

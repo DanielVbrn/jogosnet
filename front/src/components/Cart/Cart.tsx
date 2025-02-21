@@ -24,13 +24,12 @@ const Cart:React.FC<CartProps> = ({cart,removeFromCart, total}) => {
 
       </div>
       <div className={styles.cartTotal}>
-        : ${total.toFixed(2)}
+        <h4>Total: ${total.toFixed(2)}</h4>
       </div>
-
         <li>
-          <button id={styles.cartBtn} className="btn">
+          <button id={styles.cartBtn} className={styles.cartBtn}>
               <i className="fas fa-shopping-cart"></i> 
-              <span id="cart-count" className="cart-count">0</span>
+              <p id="cart-count" className={styles.cartCount}>{cart.length} itens no Carrinho</p>
           </button>
       </li>
     </div>
