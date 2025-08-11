@@ -34,6 +34,15 @@ export class ProductService {
     return savedProduct;
   }
 
+  static async saveMultipleProducts(products: Products[]) : Promise<Products[]> {
+    const repo = AppDataSource.getRepository(Products);
+    const savedProducts = await repo.save(products);
+
+    await redis.del("products");
+
+    return savedProducts;
+  }
+
   static async deleteProduct(id: number): Promise<boolean> {
     const repo = AppDataSource.getRepository(Products);
     const product = await repo.findOneBy({ id });
