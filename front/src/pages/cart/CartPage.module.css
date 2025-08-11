@@ -1,0 +1,52 @@
+/* Garante que o conteúdo do carrinho não fique escondido pelo header fixo */
+.cartPage {
+    padding-top: 100px; /* Ajuste conforme a altura do seu header */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Estilização do botão "Continuar Comprando" */
+.backBtn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.backBtn:hover {
+    background-color: #ff8533;
+}
+
+/* Estilo para a mensagem de carrinho vazio */
+.cartPage p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.cartPage p button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ffa200;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cartPage p button:hover {
+    background-color: #d08700;
+}

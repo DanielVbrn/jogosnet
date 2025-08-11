@@ -12,7 +12,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.home}>
-
       <section className={styles.hero}>
         {highlight && (
           <Highlight

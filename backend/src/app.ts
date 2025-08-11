@@ -13,6 +13,8 @@ AppDataSource.initialize()
 
 const corsOptions = {
   origin: ["https://front-chi-six.vercel.app", "https://backend-jogosnet.onrender.com"],
+  // origin: ["http://localhost:5173", "http://localhost:3333"],
+
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,

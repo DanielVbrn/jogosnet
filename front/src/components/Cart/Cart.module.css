@@ -14,7 +14,7 @@
 .cartCount {
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: row;    
     justify-content: end;
     top: -5px;
     right: -5px;

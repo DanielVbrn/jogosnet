@@ -11,7 +11,7 @@ interface ProductContextProps {
   removeFromCart: (productId: number) => void;
   handleSearch: (searchTerm: string) => void;
   setHighlight: (product: Product | undefined) => void; 
-}
+} 
 
 const ProductContext = createContext<ProductContextProps | undefined>(undefined);
 
@@ -20,6 +20,8 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
   const [highlight, setHighlightState] = useState<Product | undefined>(undefined); 
+  const [cartAlert, setCartAlert] = useState("")
+
 
   const productService = new ProductService();
 
@@ -84,6 +86,8 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     const updatedCart = [...cart, product];
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart)); 
+    setCartAlert("Seu item foi adicionado ao carrinho!");
+    setTimeout(() => setCartAlert(""), 3000);
   };
 
   const removeFromCart = (productId: number) => {
