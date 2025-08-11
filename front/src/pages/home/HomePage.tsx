@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useProductContext } from "../../context/ProductContext";
 import Highlight from "../../components/Highlight/Highlight";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";

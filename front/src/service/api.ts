@@ -5,8 +5,8 @@
     public baseURL: string;
 
     constructor() {
-      this.baseURL = 'http://localhost:3333'
-      // this.baseURL = 'https://backend-jogosnet.onrender.com'; 
+      // this.baseURL = 'http://localhost:3333'
+      this.baseURL = 'https://backend-jogosnet.onrender.com'; 
       this.api = axios.create({
         baseURL: this.baseURL,
         headers: {
