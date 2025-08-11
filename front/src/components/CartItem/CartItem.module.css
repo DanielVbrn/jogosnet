@@ -1,0 +1,38 @@
+.cartItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .productImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .productDetails {
+    flex-grow: 1;
+  }
+  
+  .productName {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .productPrice {
+    color: green;
+    font-size: 14px;
+  }
+  
+  .removeBtn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

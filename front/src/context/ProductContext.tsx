@@ -10,7 +10,7 @@ interface ProductContextProps {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   handleSearch: (searchTerm: string) => void;
-  setHighlight: (product: Product | undefined) => void; // Corrigido
+  setHighlight: (product: Product | undefined) => void; 
 }
 
 const ProductContext = createContext<ProductContextProps | undefined>(undefined);
@@ -19,7 +19,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
-  const [highlight, setHighlight] = useState<Product | undefined>(undefined); 
+  const [highlight, setHighlightState] = useState<Product | undefined>(undefined); 
 
   const productService = new ProductService();
 
@@ -27,37 +27,47 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     const storedProducts = localStorage.getItem("products");
     const storedCart = localStorage.getItem("cart");
     const storedHighLight = localStorage.getItem("highlight");
-
-    if(storedProducts) {
+  
+    if (storedProducts) {
       const parseProducts = JSON.parse(storedProducts);
       setProducts(parseProducts);
       setFilteredProducts(parseProducts);
-      if(storedHighLight) {
-        setHighlight(JSON.parse(storedHighLight));
+  
+      if (storedHighLight && !highlight) {
+        setHighlightState(JSON.parse(storedHighLight));
       }
     } else {
       fetchProducts();
     }
-
+  
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-
   }, []);
   
+
   const fetchProducts = async () => {
     try {
       const data = await productService.getAllProducts();
       setProducts(data);
       setFilteredProducts(data);
-      if (data.length > 0) setHighlight(data[0]);
+  
+      const storedHighLight = localStorage.getItem("highlight");
+      if (!storedHighLight && data.length > 0) {
+        setHighlightState(data[0]);
+      }
+  
       localStorage.setItem("products", JSON.stringify(data));
     } catch (error) {
       console.error("Erro ao carregar produtos", error);
     }
   };
-  fetchProducts();
+  
 
+  const setHighlight = (product: Product | undefined) => {
+    setHighlightState(product);
+  };
+  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -67,7 +77,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
     if (highlight) {
       localStorage.setItem("highlight", JSON.stringify(highlight));
     }
-  }, [highlight]);
+  }, [highlight]); 
 
 
   const addToCart = (product: Product) => {

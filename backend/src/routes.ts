@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ProductController from "./controller/product_controller";
+import ProductController from "./controller/product.controller";
 import upload from "./middleware/multer";
 
 const routes = Router();

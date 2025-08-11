@@ -9,7 +9,7 @@ Este é um projeto de e-commerce para venda de jogos digitais, desenvolvido com 
 
 ## Documentação da API
 
-[Link da API](https://backend-jogosnet.onrender.com/api-docs/#/)
+[Link da API](https://backend-jogosnet.onrender.com/api-docs/)
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -27,6 +27,7 @@ Este é um projeto de e-commerce para venda de jogos digitais, desenvolvido com 
 - PostgreSQL
 - CORS
 - Dotenv
+- Redis
 
 ---
 
@@ -60,6 +61,7 @@ cd frontend
 3. Configure as variáveis de ambiente no arquivo .env:
 
 - DATABASE_URL=seu_banco_de_dados
+- REDIS_URL=url da sua chave REDIS
 
 4. Execute o backend:
 - npm run start
