@@ -1,18 +1,12 @@
 import {DataSource} from "typeorm"
-import {Products} from "./entities/Products"
-import { config } from "./config/config"
-
-
-
-const nameDB = process.env.NAMEDB
-const userDB = process.env.USER_NAME
-const passwordDB = process.env.USER_PASSWORD
-
-
+import { config } from "./config/config";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
     url: config.databaseUrl,  
+    // username: config.userDB,
+    // database: config.nameDB,
+    // password: config.passwordDB,
     synchronize: true,
     logging: false,
     entities: ["src/entities/*.ts"],
@@ -21,5 +15,6 @@ export const AppDataSource = new DataSource({
     ssl: {
         rejectUnauthorized: false, // Importante para conexão segura no Render
     }
+
 });
 

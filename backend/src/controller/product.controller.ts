@@ -1,139 +1,98 @@
-// Import multer
-import multer from "multer";
 import { Request, Response } from "express";
-import { AppDataSource } from "../data_source";
+import { ProductService } from "../services/product.service";
 import { Products } from "../entities/Products";
-import { config } from "../config/config";
-import Redis from "ioredis";
-
-
-const redis = new Redis(config.databaseUrl);
 
 export default class ProductController {
-    static getAllProducts = async (req: Request, res: Response) => {
-        try {
-            const cachedProducts = await redis.get("products");
+  static async getAllProducts(req: Request, res: Response) {
+    try {
+      const products = await ProductService.getAllProducts();
+      console.log(products.fromCache ? "Retornando cache de produtos" : "Consultando banco e salvando no cache");
+      return res.status(200).json(products.data);
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
+      return res.status(500).json({ message: "Erro no servidor" });
+    }
+  }
 
-            if (cachedProducts) {
-                console.log("Retornando Cache de Produtos");
-                return res.status(200).json(JSON.parse(cachedProducts));
-            }
+  static async getProductByName(req: Request, res: Response) {
+    const { nome } = req.params;
+    try {
+      const product = await ProductService.getProductByName(nome);
 
-            const products = await AppDataSource.getRepository(Products).find();
+      if (!product) {
+        return res.status(404).json({ message: "Produto não encontrado" });
+      }
 
-            await redis.set("products", JSON.stringify(products), "EX", 3600); 
+      console.log(product.fromCache ? `🔄 Produto ${nome} retornado do cache` : `🆕 Produto ${nome} salvo no cache`);
+      return res.status(200).json(product.data);
+    } catch (error) {
+      console.error("Erro ao buscar produto:", error);
+      return res.status(500).json({ message: "Erro no servidor" });
+    }
+  }
 
-            console.log("🆕 Consultando banco e salvando no cache");
-            return res.status(200).json(products);
-        } catch (error) {
-            console.error("Erro ao buscar produtos:", error);
-            return res.status(500).json({ message: "Erro no servidor" });
-        }
-    };
+  static async saveProduct(req: Request, res: Response) {
+    try {
+      const newProduct = new Products();
+      newProduct.nome = req.body.nome;
+      newProduct.descricao = req.body.descricao;
+      newProduct.preco = parseFloat(req.body.preco);
+      newProduct.imgSrc = req.body.imgSrc;
+      newProduct.videoSrc = req.body.videoSrc;
 
-    static getProductByName = async (req: Request, res: Response) => {
-        const { nome } = req.params;
-        const cacheKey = `product:${nome}`;
+      const savedProduct = await ProductService.saveProduct(newProduct);
 
-        try {
-            const cachedProduct = await redis.get(cacheKey);
+      console.log("Cache de produtos limpo após inserção");
+      return res.status(200).json(savedProduct);
+    } catch (error) {
+      console.error("Erro ao salvar o produto", error);
+      return res.status(500).json({ message: "Erro ao salvar o produto" });
+    }
+  }
 
-            if (cachedProduct) {
-                console.log(`🔄 Produto ${nome} retornado do cache`);
-                return res.status(200).json(JSON.parse(cachedProduct));
-            }
+  static async deleteProduct(req: Request, res: Response) {
+    const { id } = req.params;
+    const idProduct = Number(id);
 
-            const product = await AppDataSource.getRepository(Products).findOneBy({ nome });
+    if (isNaN(idProduct)) {
+      return res.status(400).json({ message: "ID inválido" });
+    }
 
-            if (!product) {
-                return res.status(404).json({ message: "Produto não encontrado" });
-            }
+    try {
+      const deleted = await ProductService.deleteProduct(idProduct);
 
-            await redis.set(cacheKey, JSON.stringify(product), "EX", 3600);
+      if (!deleted) {
+        return res.status(404).json({ message: "Produto não encontrado" });
+      }
 
-            console.log(`🆕 Produto ${nome} salvo no cache`);
-            return res.status(200).json(product);
-        } catch (error) {
-            console.error("Erro ao buscar produto:", error);
-            return res.status(500).json({ message: "Erro no servidor" });
-        }
-    };
+      console.log("Cache de produtos atualizado após remoção");
+      return res.status(200).json({ message: "Produto removido" });
+    } catch (error) {
+      console.error("Erro ao deletar produto", error);
+      return res.status(500).json({ message: "Erro no servidor" });
+    }
+  }
 
-    static saveProduct = async (req: Request, res: Response) => {
-        const productsRepository = AppDataSource.getRepository(Products);
-        const product = new Products();
+  static async updateProduct(req: Request, res: Response) {
+    const { id } = req.params;
+    const idProduct = Number(id);
 
-        product.nome = req.body.nome;
-        product.descricao = req.body.descricao;
-        product.preco = parseFloat(req.body.preco);
-        product.imgSrc = req.body.imgSrc;
-        product.videoSrc = req.body.videoSrc;
+    if (isNaN(idProduct)) {
+      return res.status(400).json({ message: "ID inválido" });
+    }
 
-        try {
-            const savedProduct = await productsRepository.save(product);
+    try {
+      const updated = await ProductService.updateProduct(idProduct, req.body);
 
-            await redis.del("products");
+      if (!updated) {
+        return res.status(404).json({ message: "Produto não encontrado" });
+      }
 
-            console.log("🗑️ Cache de produtos limpo após inserção");
-            return res.status(200).json(savedProduct);
-        } catch (error) {
-            console.error("Erro ao salvar o produto", error);
-            return res.status(500).json({ message: "Erro ao salvar o produto", error });
-        }
-    };
-
-
-    static deleteProduct = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        const idProduct = Number(id);
-
-        if (isNaN(idProduct)) {
-            return res.status(400).json({ message: "ID inválido" });
-        }
-
-        const productsRepository = AppDataSource.getRepository(Products);
-        const findProduct = await productsRepository.findOneBy({ id: idProduct });
-
-        if (!findProduct) {
-            return res.status(404).json({ message: "Produto não encontrado" });
-        }
-
-        await productsRepository.delete(idProduct);
-
-        // Limpar cache geral e específico do produto
-        await redis.del("products");
-        await redis.del(`product:${findProduct.nome}`);
-
-        console.log("🗑️ Cache de produtos atualizado após remoção");
-        return res.status(200).json({ message: "Produto removido" });
-    };
-
-    
-    static updateProduct = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        const idProduct = Number(id);
-
-        if (isNaN(idProduct)) {
-            return res.status(400).json({ message: "ID inválido" });
-        }
-
-        const productsRepository = AppDataSource.getRepository(Products);
-        const findProduct = await productsRepository.findOneBy({ id: idProduct });
-
-        if (!findProduct) {
-            return res.status(404).json({ message: "Produto não encontrado" });
-        }
-
-        await productsRepository.update({ id: idProduct }, req.body);
-
-        await redis.del("products");
-        await redis.del(`product:${findProduct.nome}`);
-
-        console.log("🗑️ Cache de produtos atualizado após edição");
-        return res.status(200).json({ message: "Produto atualizado com sucesso" });
-    };
-
-    
-    
+      console.log("Cache de produtos atualizado após edição");
+      return res.status(200).json({ message: "Produto atualizado com sucesso" });
+    } catch (error) {
+      console.error("Erro ao atualizar produto", error);
+      return res.status(500).json({ message: "Erro no servidor" });
+    }
+  }
 }
-
