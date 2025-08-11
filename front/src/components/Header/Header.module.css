@@ -1,92 +1,57 @@
-/* Header.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
+/* Header fixo no topo */
 .header {
-    background-color: #121212; /* Fundo escuro elegante */
+    background-color: #121212;
     color: #fff;
-    padding: 1.2rem 2rem;
+    padding: 1rem 1.5rem;
     display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid #2a2a2a;
-    font-family: 'Inter', sans-serif;
+    justify-content: center; /* Centraliza o conteúdo */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-.header img {
-    width: 160px;
-}
-
+/* Container principal */
 .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-}
-
-/* Logo com espaçamento adequado */
-.logo h1 a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 700;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.logo h1 a:hover {
-    opacity: 0.7;
-}
-
-/* Navegação - Menu */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
     position: relative;
 }
 
-.navList {
+/* Logo (alinhada à esquerda) */
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo img {
+    width: 140px;
+}
+
+/* Barra de pesquisa no centro */
+.searchBarContainer {
+    flex: 2; /* Ocupa mais espaço para centralizar */
+    display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    max-width: 400px;
 }
 
-.navList a {
-    text-decoration: none;
-    color: #d1d1d1;
-    font-weight: 600;
-    padding: 0.5rem;
-    font-size: 1rem;
-    transition: color 0.3s ease-in-out;
-}
-
-.navList a:hover {
-    color: #fff;
-}
-
-/* Botão de Carrinho */
+/* Botão do carrinho (alinhado à direita) */
 .cartBtn {
     display: flex;
     align-items: center;
     background: none;
     color: #fff;
-    border: 1px solid #fff;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 5px;
+    border: none;
+    font-size: 1.5rem;
     cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.cartBtn:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* Número de Itens no Carrinho */
 .cartCount {
     background-color: #ff5252;
     color: #fff;
@@ -97,52 +62,105 @@ nav ul li {
     margin-left: 0.5rem;
 }
 
-/* Campo de Pesquisa */
-.searchBarContainer {
+/* Navbar (exibido no centro no desktop) */
+.nav {
+    flex: 2; /* Ocupa mais espaço para centralizar */
     display: flex;
-    align-items: center;
-    background: #2a2a2a;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    width: 250px;
+    justify-content: center; /* Centraliza o menu */
 }
 
-.searchBarContainer input {
+/* Itens da navegação */
+.navList {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os links */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navList li {
+    margin: 0;
+}
+
+.navList a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navList a:hover {
+    color: #ffa500;
+}
+
+/* Botão do menu hambúrguer (aparece no mobile) */
+.hamburger {
+    display: none; /* Escondido no desktop */
     background: none;
     border: none;
     color: #fff;
-    width: 100%;
-    font-size: 1rem;
-    outline: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 1100;
 }
 
-.searchBarContainer input::placeholder {
-    color: #b3b3b3;
+/* Menu lateral (mobile) */
+.navMobile {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background: rgba(18, 18, 18, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease-in-out;
 }
 
-/* Responsividade */
+/* Quando o menu está aberto */
+.navMobile.navOpen {
+    left: 0;
+}
+
+/* Responsividade para mobile */
 @media (max-width: 768px) {
-    .header {
-        padding: 1rem;
+    /* Exibir o botão do menu hamburguer */
+    .hamburger {
+        display: block;
     }
 
-    .container {
-        flex-direction: column;
-        gap: 1rem;
+    /* Esconder o menu no desktop no mobile */
+    .nav {
+        display: none;
     }
 
     .navList {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
+        display: block;
+        margin: 2em;
+        font-size: 2em;
     }
 
-    .cartBtn {
-        width: 100%;
+    /* Ajustar logo para o centro no mobile */
+    .logo {
         justify-content: center;
+        flex: 1;
     }
 
+    /* Esconder a barra de pesquisa no mobile */
     .searchBarContainer {
-        width: 100%;
+        display: none;
+    }
+
+    /* Ajustar carrinho para o canto direito */
+    .cartBtn {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
     }
 }

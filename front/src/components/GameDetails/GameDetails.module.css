@@ -12,11 +12,11 @@ body {
     color: #fff;
 }
 
-/* GameDetails */
+
 .gameDetails {
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 160em;
+    margin-top: 5em;
     text-align: center;
     background-color: #222;
     border-radius: 15px;
@@ -51,9 +51,9 @@ body {
 
 .reactPlayerContainer {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;     /* Centraliza verticalmente */
-    margin-top: 20px;        /* Espaçamento superior, caso necessário */
+    justify-content: center;
+    align-items: center;    
+    margin-top: 20px;        
 }
 
 
@@ -72,4 +72,19 @@ body {
 
 .backButton:hover {
     background-color: #ff8c00;
+}
+
+@media (max-width: 1024px) {
+    .gameDetails img {
+        width: 16em;
+        max-width: 400px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        object-fit: cover;
+    }
+    
+    .gameDetails img:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
 }

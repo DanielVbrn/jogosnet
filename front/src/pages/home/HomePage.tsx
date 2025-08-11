@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useProductContext } from "../../context/ProductContext";
 import Highlight from "../../components/Highlight/Highlight";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
@@ -12,7 +12,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.home}>
-
       <section className={styles.hero}>
         {highlight && (
           <Highlight
