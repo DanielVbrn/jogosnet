@@ -50,6 +50,37 @@ export default class ProductController {
     }
   }
 
+  static async seedProducts(req: Request, res: Response) {
+    try {
+      const productsData: Products[] = req.body;
+
+      if (!Array.isArray(productsData) || productsData.length === 0) {
+        return res.status(400).json({ message: "Envie um array de produtos" });
+      }
+
+      const newProducts = productsData.map((data) => {
+        const p = new Products();
+        p.nome = data.nome
+        p.descricao = data.descricao;
+        p.preco = parseFloat(String(data.preco));
+        p.imgSrc = data.imgSrc;
+        p.videoSrc = data.videoSrc;
+        return p;
+      })
+
+      const savedProducts = await ProductService.saveMultipleProducts(newProducts);
+
+      return res.status(201).json({
+        message: `${savedProducts.length} produtos adicionados com sucesso`,
+        produtos: savedProducts
+      });
+
+    } catch (error) {
+      console.error("Erro ao popular o banco", error);
+      return res.status(500).json({ message: "Erro ao popular o banco" });
+    }
+  }
+
   static async deleteProduct(req: Request, res: Response) {
     const { id } = req.params;
     const idProduct = Number(id);

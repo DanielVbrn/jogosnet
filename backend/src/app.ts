@@ -12,7 +12,7 @@ AppDataSource.initialize()
   .catch((error) => console.error("Erro ao conectar ao banco de dados:", error));
 
 const corsOptions = {
-  origin: ["https://front-chi-six.vercel.app", "https://backend-jogosnet.onrender.com"],
+  origin: ["https://jogosnet-ndnf.vercel.app", "https://backend-jogosnet.onrender.com"],
   // origin: ["http://localhost:5173", "http://localhost:3333"],
 
   methods: ["GET", "POST", "PUT", "DELETE"],
