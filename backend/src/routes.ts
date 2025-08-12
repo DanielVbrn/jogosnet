@@ -47,6 +47,39 @@ routes.get("/products", ProductController.getAllProducts);
  */
 routes.post("/products", ProductController.saveProduct);
 
+
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     summary: Cria vários produtos
+ *     description: Adiciona novos produtos ao banco de dados.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *               preco:
+ *                 type: number
+ *               descricao:
+ *                 type: string
+ *               imgSrc:
+ *                 type: string
+ *               videoSrc:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Produtos criados com sucesso.
+ *       400:
+ *         description: Erro ao criar produtos.
+ */
+routes.post("/products", ProductController.seedProducts);
+
+
 /**
  * @swagger
  * /products/{id}:
